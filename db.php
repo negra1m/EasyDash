@@ -4,14 +4,12 @@
 //
 //  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
 //
-//  Description: A tool that stablish and communicate with Danfoss 
-//  equipaments (AK-SC255 / AK-SC355 / AK-SM88x), 
-//  using the controller web server API 
-//  (See XML_Interface 1_0 (Deprecated) - Danfoss Manual).
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
 //
-//  Author: F
-//
+//  Author: Vinícius Negrão e Filipe Aparecido 
 //  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
 //
 /* ****************************************************************** */
 
@@ -20,9 +18,7 @@
 //  data base connection and query execution
 //
 /* ****************************************************************** */
-
-function dbUpdate($sql) {
-
+function dbUpdate($sql, $cond) {
     // seting the database parameters...
     $servername = "10.155.131.16";
     $username = "easy";
@@ -36,8 +32,8 @@ function dbUpdate($sql) {
     if($conn->connect_error) {
         logUpdate($dbLogFile, die("Connection failed: " . $conn->connect_error));
     }
-
-    // cxecute query
+    if($cond == 1){ // condição 1 tem como objetivo retornar um array com os resultados, usado para o gráfico de barras.
+    // execute query
         $run = mysqli_query($conn, $sql);
         if (!$run) {
         printf("Error: %s\n", mysqli_error($conn));
@@ -45,13 +41,23 @@ function dbUpdate($sql) {
 }
         $return = mysqli_fetch_array($run, MYSQLI_ASSOC);
         return $return;
-        //logUpdate($dbLogFile, "Record updated successfully: " . $sql);
 
     // close connection
     $conn->close();
 
 }
-
+    else if($cond == 2){ //condição 2 conta o número de linhas retornados pela query, usado para mostrar o atual nos charts de tipo PIE.
+         $run = mysqli_query($conn, $sql);
+        if (!$run) {
+        printf("Error: %s\n", mysqli_error($conn));
+        exit();
+}
+        $return = mysqli_fetch_num_rows($run);
+        return $return;
+    //close connection 
+    $conn->close();
+    }
+}
 /* ****************************************************************** */
 
 ?>

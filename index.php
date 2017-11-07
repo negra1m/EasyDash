@@ -1,4 +1,24 @@
-<?php header('Access-Control-Allow-Origin: *');
+<?php 
+/* ****************************************************************** */
+//
+//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+//
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
+//
+//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
+//
+/* ****************************************************************** */
+
+/* ****************************************************************** */
+//
+//  Data to build chart (bar type) by AJAX require.
+//
+/* ****************************************************************** */
+
+header('Access-Control-Allow-Origin: *');
 session_start();
 include ("db.php");
 $semana_atual = date('W'); //2017-11-01
@@ -7,18 +27,15 @@ $semana1_query = $semana_atual - 1;
 $semana2_query = $semana_atual - 2;
 $semana3_query = $semana_atual - 3;
 
-
-
 $dados_semana_atual = "select * from EASY_HISTORIC.STORE_STATUS WHERE SEMANA_NUMERO = $semana_atual";
 $dados_semana1 = "select ALL_IL, MANU_IL, ALL_FA, MANU_FA, ALL_AC, MANU_AC from STORE_STATUS WHERE SEMANA_NUMERO = $semana1_query";
 $dados_semana2 = "select ALL_IL, MANU_IL, ALL_FA, MANU_FA, ALL_AC, MANU_AC from STORE_STATUS WHERE SEMANA_NUMERO = $semana2_query";
 $dados_semana3 = "select ALL_IL, MANU_IL, ALL_FA, MANU_FA, ALL_AC, MANU_AC from STORE_STATUS WHERE SEMANA_NUMERO = $semana3_query";
 
-$atual = dbUpdate($dados_semana_atual);
-$semana1 = dbUpdate($dados_semana1);
-$semana2 = dbUpdate($dados_semana2);
-$semana3 = dbUpdate($dados_semana3);
-
+$atual = dbUpdate($dados_semana_atual, 1);
+$semana1 = dbUpdate($dados_semana1, 1);
+$semana2 = dbUpdate($dados_semana2, 1);
+$semana3 = dbUpdate($dados_semana3, 1);
 
 $dados = array(
     //ATUAL

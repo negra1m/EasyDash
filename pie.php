@@ -1,6 +1,27 @@
-<?php header('Access-Control-Allow-Origin: *');
+<?php 
+/* ****************************************************************** */
+//
+//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+//
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
+//
+//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
+//
+/* ****************************************************************** */
+
+/* ****************************************************************** */
+//
+//  Data to build chart (Pie type) by AJAX require.
+//
+/* ****************************************************************** */
+
+
+header('Access-Control-Allow-Origin: *');
 session_start();
-include ("db_pie.php");
+include ("db.php");
 $dt_ini = date('Y-m-d'); //2017-11-01
 
 $il = "%IL%"; //iluminação
@@ -18,12 +39,12 @@ $fa_all_qry = "CALL status_fa('$dt_ini', '$rf', $all)";
 $ac_man_qry = "CALL status_lojas('$dt_ini', '$ac', '$manu')";
 $ac_all_qry = "CALL status_lojas('$dt_ini', '$ac', '$all')";
 
-$il_man = dbUpdate($il_man_qry);
-$il_all = dbUpdate($il_all_qry);
-$fa_man = dbUpdate($fa_man_qry);
-$fa_all = dbUpdate($fa_all_qry);
-$ac_man = dbUpdate($ac_man_qry);
-$ac_all = dbUpdate($ac_all_qry);
+$il_man = dbUpdate($il_man_qry, 2);
+$il_all = dbUpdate($il_all_qry, 2);
+$fa_man = dbUpdate($fa_man_qry, 2);
+$fa_all = dbUpdate($fa_all_qry, 2);
+$ac_man = dbUpdate($ac_man_qry, 2);
+$ac_all = dbUpdate($ac_all_qry, 2);
 
 $dados = array(
     "il_man" => $il_man,

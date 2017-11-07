@@ -1,4 +1,20 @@
-
+/* ****************************************************************** 
+//
+//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+//
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
+//
+//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
+//
+/* ****************************************************************** */
+/* ****************************************************************** 
+//
+//  StyleSheet
+//
+/* ****************************************************************** */
 #doughnut{
 	text-align: center;
 }

@@ -1,4 +1,21 @@
- Date.prototype.getWeekNumber = function(){
+/* ****************************************************************** 
+//
+//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+//
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
+//
+//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
+//
+/* ****************************************************************** */
+/* ****************************************************************** 
+//
+//  JS commands and AJAX comunication with PHP server.
+//
+/* ****************************************************************** */
+Date.prototype.getWeekNumber = function(){
                       var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
                       var dayNum = d.getUTCDay() || 7;
                       d.setUTCDate(d.getUTCDate() + 4 - dayNum);
