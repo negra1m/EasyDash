@@ -1,0 +1,26 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
+<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
+
+
+
+
+
+
+Frio Alimentar
+Soma dos status em Manual
+Soma dos status em Automático
+
+AC
+Soma dos status em Manual
+Soma dos status em Automático
+
+Iluminação
+Soma dos status em Manual
+Soma dos status em Automático
+
+
+
+var data = SELECT count(id) FROM "datapoints" WHERE status_frio = 'manual';
+var data += SELECT count(id) FROM "datapoints" WHERE status_frio = 'automatico';
+
+labels ficarão estáticos.
