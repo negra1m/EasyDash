@@ -27,7 +27,7 @@ $dt_ini = date('Y-m-d'); //2017-11-01
 $il = "%IL%"; //iluminação
 $ac = "%AC_____"; //ar condicionado
 $rf = '';
-$all = 3; //todas as lojas
+$all = 99	; //todas as lojas
 $manu = 0; //lojas em manual
 
 $il_man_qry = "CALL status_lojas('$dt_ini', '$il', '$manu')";

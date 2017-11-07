@@ -52,8 +52,9 @@ function dbUpdate($sql, $cond) {
         printf("Error: %s\n", mysqli_error($conn));
         exit();
 }
-        $return = mysqli_fetch_num_rows($run);
+        $return = mysqli_num_rows($run);
         return $return;
+
     //close connection 
     $conn->close();
     }
