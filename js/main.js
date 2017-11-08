@@ -15,6 +15,15 @@
 //  JS commands and AJAX comunication with PHP server.
 //
 /* ****************************************************************** */
+
+$(document).ready(function(){
+  $('#btn-painel-show').change(function() {
+    $("#painel-pie").toggle("slow");
+  });
+});
+
+var corAuto = 'rgba(34, 229, 112, 0.8)';
+var corManu = 'rgba(200, 0, 10, 0.6)';
 Date.prototype.getWeekNumber = function(){
                       var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
                       var dayNum = d.getUTCDay() || 7;
@@ -34,15 +43,15 @@ Date.prototype.getWeekNumber = function(){
 					} 
 					var today = dd+'/'+mm+'/'+yyyy;
 /*BAR CHART PARA LOJAS COM STATUS EM MANUAL*/
-$(document).ready(function(){
+$(document).ready(function aa(){
     document.getElementById("bar_waiting").setAttribute('style', 'display: block');
     $.ajax({
 
                 url: "http://10.155.131.16:8090",
                 type: "GET",
                 success: function (filipinho){
-                  console.log(filipinho);
-                  console.log(today);
+                  // console.log(filipinho);
+                  // console.log(today);
                   var atual_semana = new Date().getWeekNumber();
                   var semana_1 = atual_semana-1;
                   var semana_2 = atual_semana-2;
@@ -52,7 +61,7 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("bar_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    console.log(result);
+                    // console.log(result);
                     var barChartData = {
                     //label vem do BD
 
@@ -94,7 +103,7 @@ $(document).ready(function(){
                                 position: 'bottom',
                             },
                             title: {
-                                display: true,
+                                display: false,
                                 text: 'Lojas com Status em Manual '+today
                             },
                             scales: {
@@ -116,14 +125,13 @@ $(document).ready(function(){
     document.getElementById("pie_ilu_waiting").setAttribute('style', 'display: block');
     $.ajax({
 
+
                 url: "http://10.155.131.16:8090/pie.php",
                 type: "GET",
                 success: function (filipinho){
                     //Sucesso no AJAX
                     document.getElementById("pie_ilu_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    console.log(result.il_man);
-                    console.log(result.il_all);
                     var total = result.il_all - result.il_man;
                     new Chart(document.getElementById("doughnut_il"), {
                         type: 'pie',
@@ -132,15 +140,18 @@ $(document).ready(function(){
                           datasets: [
                             {
                               label: "Lojas",
-                              backgroundColor: ["rgba(44, 203, 247, 0.8)", "rgba(34, 229, 112, 0.8)"],
+                              backgroundColor: [corManu, corAuto],
                               data: [result.il_man, total]
                             }
                           ]
                         },
                         options: {
+                          legend: {
+                                position: 'bottom'
+                          },
                           title: {
                             display: true,
-                            text: 'Status Iluminação em: '+today
+                            text: 'Iluminação em: '+today
                           },
                           responsive: false
                         }
@@ -160,8 +171,8 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("pie_fa_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    console.log(result.ac_man);
-                    console.log(result.ac_all);
+                    // console.log(result.ac_man);
+                    // console.log(result.ac_all);
                     var total = result.fa_all - result.fa_man;
                     new Chart(document.getElementById("doughnut_fa"), {
                         type: 'pie',
@@ -170,15 +181,18 @@ $(document).ready(function(){
                           datasets: [
                             {
                               label: "Lojas",
-                              backgroundColor: ["rgba(44, 203, 247, 0.8)", "rgba(34, 229, 112, 0.8)"],
+                              backgroundColor: [corManu, corAuto],
                               data: [result.fa_man, total]
                             }
                           ]
                         },
                         options: {
+                          legend: {
+                                position: 'bottom'
+                          },
                           title: {
                             display: true,
-                            text: 'Status Frio Alimentar em: '+today
+                            text: 'Frio Alimentar em: '+today
                           },
                           responsive: false
                         }
@@ -197,29 +211,68 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("pie_ac_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    console.log(result.ac_man);
-                    console.log(result.ac_all);
+                    // console.log(result.ac_man);
+                    // console.log(result.ac_all);
                     var total = result.ac_all - result.ac_man;
-                    new Chart(document.getElementById("doughnut_ac"), {
+                    var pie_ac = new Chart(document.getElementById("doughnut_ac"), {
                         type: 'pie',
+                        onAnimationProgress: drawSegmentValues,
                         data: {
                           labels: ["Manual", "Automático"],
                           datasets: [
                             {
                               label: "Lojas",
-                              backgroundColor: ["rgba(44, 203, 247, 0.8)", "rgba(34, 229, 112, 0.8)"],
+                              backgroundColor: [corManu, corAuto],
                               data: [result.ac_man, total]
                             }
                           ]
                         },
                         options: {
+                           legend: {
+                                position: 'bottom'
+                          },
                           title: {
                             display: true,
-                            text: 'Status Ar condicionado em: '+today
+                            text: 'Ar condicionado em: '+today
                           },
                           responsive: false
                         }
                     });
+                    function drawSegmentValues()
+                    {
+                    var total = 0;
+                        for(var i=0; i<pie_ac.segments.length; i++) {
+                            total+= pie_ac.segments[i].value;
+                            console.log(total);
+                        }
+                        for(var i=0; i<pie_ac.segments.length; i++) 
+                        {
+                            ctx.fillStyle="white";
+                            var textSize = '15px';
+                            //console.log();
+                            ctx.font= textSize+"px Verdana";
+                            // Get needed variables
+                            var value = roundToTwo((pie_ac.segments[i].value/total)*100);
+                            value = value + "%";
+                            var startAngle = pie_ac.segments[i].startAngle;
+                            var endAngle = pie_ac.segments[i].endAngle;
+                            var middleAngle = startAngle + ((endAngle - startAngle)/2);
+
+                            // Compute text location
+                            var posX = (radius/2) * Math.cos(middleAngle) + midX;
+                            var posY = (radius/2) * Math.sin(middleAngle) + midY;
+
+                            // Text offside by middle
+                            var w_offset = ctx.measureText(value).width/2;
+                            var h_offset = textSize/4;
+
+                            ctx.fillText(value, posX - w_offset, posY + h_offset);
+                        }
+                    }
+                    var radius = pie_ac.outerRadius;
+                    function roundToTwo(num) {    
+                                return +(Math.round(num + "e+0")  + "e-0");
+                            }
                 }
             })
 });
