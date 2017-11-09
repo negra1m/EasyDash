@@ -24,6 +24,8 @@ $(document).ready(function(){
 
 var corAuto = 'rgba(34, 229, 112, 0.8)';
 var corManu = 'rgba(200, 0, 10, 0.6)';
+var corNeutra = 'rgba(0, 0, 0, 0.6)';
+
 Date.prototype.getWeekNumber = function(){
                       var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
                       var dayNum = d.getUTCDay() || 7;
@@ -276,3 +278,173 @@ $(document).ready(function(){
                 }
             })
 });
+/*PIE CHART DE ECONOMIA DAS LOJAS (DADOS EMIS)*/
+$(document).ready(function(){
+    document.getElementById("pie_emis").setAttribute('style', 'display: block');
+    $.ajax({
+
+                url: "http://10.155.131.16:8090/emis.php", //mudar
+                type: "GET",
+                success: function (filipinho){
+                    //Sucesso no AJAX
+                    document.getElementById("bar_emis").setAttribute('style', 'display: none');
+                    var result = JSON.parse(filipinho);
+                    // console.log(result.ac_man);
+                    // console.log(result.ac_all);
+                    //var total = result.ac_all - result.ac_man;
+                    var pie_ac = new Chart(document.getElementById("pie_emis"), {
+                        type: 'pie',
+                        onAnimationProgress: drawSegmentValues,
+                        data: {
+                          labels: ["Vermelho", "Verde", "Neutra"],
+                          datasets: [
+                            {
+                              label: "Lojas",
+                              backgroundColor: [corManu, corAuto, corNeutra],
+                              data: [result.loja_vermelha, result.loja_verde, result.loja_neutra]
+                            }
+                          ]
+                        },
+                        options: {
+                           legend: {
+                                position: 'bottom'
+                          },
+                          title: {
+                            display: false,
+                            text: 'Status de economia Atual das Lojas: '
+                          },
+                          responsive: false
+                        }
+                    });
+                    function drawSegmentValues()
+                    {
+                    var total = 0;
+                        for(var i=0; i<pie_ac.segments.length; i++) {
+                            total+= pie_ac.segments[i].value;
+                            console.log(total);
+                        }
+                        for(var i=0; i<pie_ac.segments.length; i++) 
+                        {
+                            ctx.fillStyle="white";
+                            var textSize = '15px';
+                            //console.log();
+                            ctx.font= textSize+"px Verdana";
+                            // Get needed variables
+                            var value = roundToTwo((pie_ac.segments[i].value/total)*100);
+                            value = value + "%";
+                            var startAngle = pie_ac.segments[i].startAngle;
+                            var endAngle = pie_ac.segments[i].endAngle;
+                            var middleAngle = startAngle + ((endAngle - startAngle)/2);
+
+                            // Compute text location
+                            var posX = (radius/2) * Math.cos(middleAngle) + midX;
+                            var posY = (radius/2) * Math.sin(middleAngle) + midY;
+
+                            // Text offside by middle
+                            var w_offset = ctx.measureText(value).width/2;
+                            var h_offset = textSize/4;
+
+                            ctx.fillText(value, posX - w_offset, posY + h_offset);
+                        }
+                    }
+                    var radius = pie_ac.outerRadius;
+                    function roundToTwo(num) {    
+                                return +(Math.round(num + "e+0")  + "e-0");
+                            }
+                }
+            })
+});
+
+
+/// CONFIG CHART BASIC LINE
+/*
+$(document).ready(function(){
+    document.getElementById("line_emis").setAttribute('style', 'display: block');
+    $.ajax({
+
+                url: "http://10.155.131.16:8090/emis.php",
+                type: "GET",
+                success: function (filipinho){
+                  var atual_semana = new Date().getWeekNumber();
+                  var semana_1 = atual_semana-1;
+                  var semana_2 = atual_semana-2;
+                  var semana_3 = atual_semana-3;
+
+                //var label = "Visualização Instantânea de: "+today;
+                //Sucesso no AJAX
+                document.getElementById("bar_waiting").setAttribute('style', 'display: none');
+                var result = JSON.parse(filipinho);                    
+                var config = {
+                    type: 'line',
+                    data: {
+                      labels: [ "Semana: "+semana_3, "Semana: "+semana_2, "Semana: "+semana_1, "Semana Atual "],
+                        
+                        datasets: [{
+                            label: "Lojas",
+                            borderColor: corManu,
+                            backgroundColor: window.chartColors.red,
+                            data: [
+                                result.
+                            ],
+                            fill: false,
+                        }, {
+                            label: "My Second dataset",
+                            borderColor: window.chartColors.blue,
+                            backgroundColor: window.chartColors.blue,
+                            data: [
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor(), 
+                                randomScalingFactor()
+                            ],
+                            fill: false,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        title:{
+                            display: true,
+                            text: "Chart.js Line Chart - Custom Information in Tooltip"
+                        },
+                        tooltips: {
+                            mode: 'index',
+                            callbacks: {
+                                // Use the footer callback to display the sum of the items showing in the tooltip
+                                footer: function(tooltipItems, data) {
+                                    var sum = 0;
+
+                                    tooltipItems.forEach(function(tooltipItem) {
+                                        sum += data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+                                    });
+                                    return 'Sum: ' + sum;
+                                },
+                            },
+                            footerFontStyle: 'normal'
+                        },
+                        hover: {
+                            mode: 'index',
+                            intersect: true
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    show: true,
+                                    labelString: 'Month'
+                                }
+                            }],
+                            yAxes: [{
+                                display: true,
+                                scaleLabel: {
+                                    show: true,
+                                    labelString: 'Value'
+                                }
+                            }]
+                        }
+                    }
+                };
+
+*/

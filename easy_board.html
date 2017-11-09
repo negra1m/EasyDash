@@ -34,7 +34,7 @@
             <img src="IMAGES/gy-logo.png" height="30px" class="image-top"/>
             <!--<p style="font-size: 20px; margin-right: 20px; vertical-align: bottom; text-align: right; " >EasyBoards V1.1</p>-->
         </div>
-		<div class="container" style="margin-left: 10%">
+		<!-- <div class="container" style="margin-left: 10%"> -->
 				<!--<p>Mostra painéis</p>
 				<label class="switch">
   					<input id="btn-painel-show" type="checkbox">
@@ -43,7 +43,7 @@
 				<button class="btn btn-primary" id="btn-painel-show" onclick="hideshow()">Painéis Instantâneos</button>-->
 
 			<div class="row">
-			    <div class="col-md-9">
+			    <div class="col-md-5">
     				<h1>EasyBoards</h1>
 					<h3 class="header_charts">Lojas EasyVision - Status em Manual (por semana)</h3>
 			        <div>
@@ -53,16 +53,15 @@
 				            <div class="sk-cube4 sk-cube"></div>
 				            <div class="sk-cube3 sk-cube"></div>
 			        	</div>
-        				<canvas class="bar-chart" id="bar" height= "750px" width="850px" ;></canvas>
+        				<canvas class="bar-chart" id="bar" height= "700px" width="750px" ;></canvas>
 			        </div>
 			    </div>
 
-			    <div class="col-md-3" style="margin-right: -15px;">
-			    	
-			    	<label class="switch">
+			    <div class="col-md-3" style="">
+			    	<!--<label class="switch">
   						<input id="btn-painel-show" type="checkbox" checked>
   						<span class="slider round"></span>
-					</label>
+					</label>-->
 			        <div id="painel-pie">
 			        	<h3 class="header_charts">Status (Atual)</h3>
 				        <div class="row">
@@ -105,8 +104,25 @@
 				            </div>
 				        </div>
 				    </div>
+			    </div><!--FIM COL MD-3-->
+			    
+			</div><!--fim row-->
+			<div class="col-md-3" style="padding: 0 0 0 0;">
+			    	<!-- <div class="row"> -->
+			    		<div class="col-md-12" style="padding: 0 0 0 0;">
+		  					<h3 class="header_charts">Lojas GPA - Economia (Atual)</h3>
+					        <div class="pie-chart">
+					        	<div style="display: none" id="bar_emis" class="sk-folding-cube">
+						            <div class="sk-cube1 sk-cube"></div>
+						            <div class="sk-cube2 sk-cube"></div>
+						            <div class="sk-cube4 sk-cube"></div>
+						            <div class="sk-cube3 sk-cube"></div>
+					        	</div>
+		        				<canvas id="pie_emis" height= "400px" width="400px" ;></canvas>
+			        		</div>
+			    		</div>
+					</div>
 			    </div>
-			</div>
-		</div>
+	<!-- </div> container -->
 	</body>
 </html>
