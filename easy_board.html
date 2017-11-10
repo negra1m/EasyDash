@@ -15,7 +15,7 @@
 //
 //  Front-End Dashboards View
 //
-/* ****************************************************************** */-->
+/* ****************************************************************** */-->	
 <html>
 	<head>
 		<meta charset="UTF-8"/>
@@ -25,91 +25,97 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.0/Chart.bundle.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="http://www.chartjs.org/samples/latest/utils.js"></script>
-    <script src="js/main.js"></script>
+		<script src="js/main.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/main.css">
-	<body>
-        <div class="header">
+    	<link rel="stylesheet" href="css/main.css">
+    	<script src="https://use.fontawesome.com/b8c8099225.js"></script>
+		<div class="header">
             <img src="IMAGES/logo-pie.png" height="100px" class="image-top"/>
             <img src="IMAGES/gy-logo.png" height="30px" class="image-top"/>
             <!--<p style="font-size: 20px; margin-right: 20px; vertical-align: bottom; text-align: right; " >EasyBoards V1.1</p>-->
         </div>
-		<!-- <div class="container" style="margin-left: 10%"> -->
+	<body id="body">
+    		<!-- <div class="container" style="margin-left: 10%"> -->
 				<!--<p>Mostra painéis</p>
 				<label class="switch">
   					<input id="btn-painel-show" type="checkbox">
   					<span class="slider round"></span>
 				</label>
 				<button class="btn btn-primary" id="btn-painel-show" onclick="hideshow()">Painéis Instantâneos</button>-->
-
-			<div class="row">
-			    <div class="col-md-5">
-    				<h1>EasyBoards</h1>
-					<h3 class="header_charts">Lojas EasyVision - Status em Manual (por semana)</h3>
-			        <div>
-			        	<div style="display: none" id="bar_waiting" class="sk-folding-cube">
-				            <div class="sk-cube1 sk-cube"></div>
-				            <div class="sk-cube2 sk-cube"></div>
-				            <div class="sk-cube4 sk-cube"></div>
-				            <div class="sk-cube3 sk-cube"></div>
-			        	</div>
-        				<canvas class="bar-chart" id="bar" height= "700px" width="750px" ;></canvas>
-			        </div>
-			    </div>
-
-			    <div class="col-md-3" style="">
-			    	<!--<label class="switch">
-  						<input id="btn-painel-show" type="checkbox" checked>
-  						<span class="slider round"></span>
-					</label>-->
-			        <div id="painel-pie">
-			        	<h3 class="header_charts">Status (Atual)</h3>
-				        <div class="row">
-				            <div class="col-md-12">
-				                <div class="pie-chart">
-	                	        	<div style="display: none" id="pie_ilu_waiting" class="sk-folding-cube">
-							            <div class="sk-cube1 sk-cube"></div>
-							            <div class="sk-cube2 sk-cube"></div>
-							            <div class="sk-cube4 sk-cube"></div>
-							            <div class="sk-cube3 sk-cube"></div>
-	    						    </div>
-	        						<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
-				                </div>
-				            </div>
-				        </div>
-				        <div class="row">
-				            <div class="col-md-12">
-				                <div class="pie-chart">
-				                	<div style="display: none" id="pie_fa_waiting" class="sk-folding-cube">
-							            <div class="sk-cube1 sk-cube"></div>
-							            <div class="sk-cube2 sk-cube"></div>
-							            <div class="sk-cube4 sk-cube"></div>
-							            <div class="sk-cube3 sk-cube"></div>
-	        						</div>
-	        						<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
-				                </div>
-				            </div>
-				        </div>
-				        <div class="row">
-				            <div class="col-md-12">
-				                <div class="pie-chart">
-				                	<div style="display: none" id="pie_ac_waiting" class="sk-folding-cube">
-							            <div class="sk-cube1 sk-cube"></div>
-							            <div class="sk-cube2 sk-cube"></div>
-							            <div class="sk-cube4 sk-cube"></div>
-							            <div class="sk-cube3 sk-cube"></div>
-	        						</div>
-	        						<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
-				                </div>
-				            </div>
+			
+			<div id="painel" class="container" style="overflow: hidden;width:100%;height: auto;margin:0 0 0 0;">
+				<h1>EasyBoards</h1>
+				
+				<div class="row">
+					<div class="col-md-1 botao-menu vertical-center">
+        				<a class="nav-button prev" href="#" style=""><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+   					</div>
+				    <div class="col-md-4">
+	    				
+						<h3 class="header_charts">Lojas EasyVision - Status em Manual (por semana)</h3>
+				        <div>
+				        	<div style="display: none" id="bar_waiting" class="sk-folding-cube">
+					            <div class="sk-cube1 sk-cube"></div>
+					            <div class="sk-cube2 sk-cube"></div>
+					            <div class="sk-cube4 sk-cube"></div>
+					            <div class="sk-cube3 sk-cube"></div>
+				        	</div>
+	        				<canvas class="bar-chart" id="bar" height= "700px" width="750px" ;></canvas>
 				        </div>
 				    </div>
-			    </div><!--FIM COL MD-3-->
-			    
-			</div><!--fim row-->
-			<div class="col-md-3" style="padding: 0 0 0 0;">
-			    	<!-- <div class="row"> -->
-			    		<div class="col-md-12" style="padding: 0 0 0 0;">
+
+				    <div class="col-md-3" style="">
+				    	<!--<label class="switch">
+	  						<input id="btn-painel-show" type="checkbox" checked>
+	  						<span class="slider round"></span>
+						</label>-->
+				        <div id="painel-pie" >
+				        	<h3 class="header_charts">Status (Atual)</h3>
+					        <div class="row">
+					            <div class="col-md-12">
+					                <div class="pie-chart">
+		                	        	<div style="display: none" id="pie_ilu_waiting" class="sk-folding-cube">
+								            <div class="sk-cube1 sk-cube"></div>
+								            <div class="sk-cube2 sk-cube"></div>
+								            <div class="sk-cube4 sk-cube"></div>
+								            <div class="sk-cube3 sk-cube"></div>
+		    						    </div>
+		        						<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="row">
+					            <div class="col-md-12">
+					                <div class="pie-chart">
+					                	<div style="display: none" id="pie_fa_waiting" class="sk-folding-cube">
+								            <div class="sk-cube1 sk-cube"></div>
+								            <div class="sk-cube2 sk-cube"></div>
+								            <div class="sk-cube4 sk-cube"></div>
+								            <div class="sk-cube3 sk-cube"></div>
+		        						</div>
+		        						<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="row">
+					            <div class="col-md-12">
+					                <div class="pie-chart">
+					                	<div style="display: none" id="pie_ac_waiting" class="sk-folding-cube">
+								            <div class="sk-cube1 sk-cube"></div>
+								            <div class="sk-cube2 sk-cube"></div>
+								            <div class="sk-cube4 sk-cube"></div>
+								            <div class="sk-cube3 sk-cube"></div>
+		        						</div>
+		        						<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+				    </div><!--FIM COL MD-3-->
+				
+					<div class="col-md-3">
+				    	<!-- <div class="row"> -->
+			    		<div class="col-md-12" >
 		  					<h3 class="header_charts">Lojas GPA - Economia (Atual)</h3>
 					        <div class="pie-chart">
 					        	<div style="display: none" id="bar_emis" class="sk-folding-cube">
@@ -122,7 +128,10 @@
 			        		</div>
 			    		</div>
 					</div>
-			    </div>
-	<!-- </div> container -->
+					<div class="col-md-1 botao-menu vertical-center">
+	    				<a style=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+	       			</div>
+					</div><!--fim row-->
+		    </div>
 	</body>
 </html>

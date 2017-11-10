@@ -32,7 +32,7 @@
 	text-align: center;
 }
 .pie-chart{
-	height: 100%;
+	height: auto;
     padding: 0;
     margin: 0;
     display: -webkit-box;
@@ -45,7 +45,7 @@
 }
 .bar-chart{
   margin: 0;
-  width: 100%;
+
 }
 /*LOADING ICON*/
   .sk-folding-cube {
