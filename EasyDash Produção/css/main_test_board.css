@@ -32,7 +32,7 @@
 	text-align: center;
 }
 .pie-chart{
-	height: 100%;
+	height: auto;
     padding: 0;
     margin: 0;
     display: -webkit-box;
@@ -45,6 +45,7 @@
 }
 .bar-chart{
   margin: 0;
+
 }
 /*LOADING ICON*/
   .sk-folding-cube {
@@ -208,25 +209,9 @@ input:checked + .slider:before {
   font-size: 30px;
 }
 .vertical-center {
-  min-height: 70%;   
-  min-height: 70vh;  
+  min-height: 70%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 70vh; /* These two lines are counted as one :-)       */
   display: flex;
 }
-.charts{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.performance{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.header{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 5%;
-    padding-right: 5%;
-    align-items: center;
-    color: #fff;
+
 }
