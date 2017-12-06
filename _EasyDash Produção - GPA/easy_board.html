@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--* ****************************************************************** */
+//
+//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+//
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
+//
+//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
+//
+/* ****************************************************************** */
+/* ****************************************************************** */
+//
+//  Front-End Dashboards View
+//
+/* ****************************************************************** */-->	
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Easy Boards - Dashboards EasyVision</title>
+        <link href="images/Icons/favicon.ico" rel="shortcut icon">
+	</head>
+		<script src="js/chart-js.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="js/chart-js-util.js"></script>
+		<script src="js/main.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+    	<link rel="stylesheet" href="css/main.css">
+    	<script src="js/font-awesome.js"></script>
+		<div class="header">
+            <img src="images/logo-pie.png" height="100px" class="image-top1"/>
+            <h1 class="easyboard">Easy Boards</h1>
+            <div class="group-img">
+                <p>Powered by</p>
+                <img src="images/gy-logo.png" height="30px" class="image-top2"/>
+            </div>
+            <!--<p style="font-size: 20px; margin-right: 20px; vertical-align: bottom; text-align: right; " >EasyBoards V1.1</p>-->
+        </div>
+	<body id="body">
+    		<!-- <div class="container" style="margin-left: 10%"> -->
+				<!--<p>Mostra painéis</p>
+				<label class="switch">
+  					<input id="btn-painel-show" type="checkbox">
+  					<span class="slider round"></span>
+				</label>
+				<button class="btn btn-primary" id="btn-painel-show" onclick="hideshow()">Painéis Instantâneos</button>-->
+			
+			<div id="painel" class="container" style="overflow: hidden;width:100%;height: auto;margin:0 0 0 0;">
+				<div class="row charts">
+<!--
+					<div class="col-md-1 botao-menu vertical-center">
+        				<a class="nav-button prev" href="#" style=""><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+   					</div>
+-->
+				    <div class="col-md-4" style="max-width: 700px">
+	    				
+						<h3 class="header_charts">Lojas EasyVision - Status em Manual (por semana)</h3>
+				        <div>
+				        	<div style="display: none" id="bar_waiting" class="sk-folding-cube">
+					            <div class="sk-cube1 sk-cube"></div>
+					            <div class="sk-cube2 sk-cube"></div>
+					            <div class="sk-cube4 sk-cube"></div>
+					            <div class="sk-cube3 sk-cube"></div>
+				        	</div>
+	        				<canvas class="bar-chart" id="bar" height= "400px" style="max-width: 650px";></canvas>
+				        </div>
+				    </div>
+
+				    <div class="col-md-3" style="max-width: 300px">
+				    	<!--<label class="switch">
+	  						<input id="btn-painel-show" type="checkbox" checked>
+	  						<span class="slider round"></span>
+						</label>-->
+				        <div id="painel-pie" >
+				        	<h3 class="header_charts">Status (Atual)</h3>
+					        <div class="row">
+					            <div class="col-md-12">
+					                <div class="pie-chart">
+		                	        	<div style="display: none" id="pie_ilu_waiting" class="sk-folding-cube">
+								            <div class="sk-cube1 sk-cube"></div>
+								            <div class="sk-cube2 sk-cube"></div>
+								            <div class="sk-cube4 sk-cube"></div>
+								            <div class="sk-cube3 sk-cube"></div>
+		    						    </div>
+		        						<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="row">
+					            <div class="col-md-12">
+					                <div class="pie-chart">
+					                	<div style="display: none" id="pie_fa_waiting" class="sk-folding-cube">
+								            <div class="sk-cube1 sk-cube"></div>
+								            <div class="sk-cube2 sk-cube"></div>
+								            <div class="sk-cube4 sk-cube"></div>
+								            <div class="sk-cube3 sk-cube"></div>
+		        						</div>
+		        						<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
+					                </div>
+					            </div>
+					        </div>
+					        <div class="row">
+					            <div class="col-md-12">
+					                <div class="pie-chart">
+					                	<div style="display: none" id="pie_ac_waiting" class="sk-folding-cube">
+								            <div class="sk-cube1 sk-cube"></div>
+								            <div class="sk-cube2 sk-cube"></div>
+								            <div class="sk-cube4 sk-cube"></div>
+								            <div class="sk-cube3 sk-cube"></div>
+		        						</div>
+		        						<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
+					                </div>
+					            </div>
+					        </div>
+					    </div>
+				    </div><!--FIM COL MD-3-->
+				
+					<div class="col-md-3" style="max-width: 500px">
+			    		<div class="col-md-12 " >
+		  					<h3 class="header_charts performance">Lojas GPA - Economia (Atual)</h3>
+					        <div class="pie-chart">
+					        	<div style="display: none" id="bar_emis" class="sk-folding-cube">
+						            <div class="sk-cube1 sk-cube"></div>
+						            <div class="sk-cube2 sk-cube"></div>
+						            <div class="sk-cube4 sk-cube"></div>
+						            <div class="sk-cube3 sk-cube"></div>
+					        	</div>
+		        				<canvas id="pie_emis" height= "300px" width="300px" ;></canvas>
+			        		</div>
+			    		</div>
+					</div>
+				
+<!--
+					<div class="col-md-1 botao-menu vertical-center">
+	    				<a style=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+	       			</div>
+-->
+					</div><!--fim row-->
+		    </div>
+	</body>
+</html>
