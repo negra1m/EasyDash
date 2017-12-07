@@ -24,7 +24,7 @@ $(document).ready(function(){
 
 var corAuto = 'rgba(34, 229, 112, 0.8)';
 var corManu = 'rgba(200, 0, 10, 0.6)';
-var corNeutra = 'rgba(0, 0, 0, 0.6)';
+var corNeutra = 'rgba(146, 163, 168, 0.6)';
 
 Date.prototype.getWeekNumber = function(){
                       var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
@@ -173,8 +173,6 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("pie_fa_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    // console.log(result.ac_man);
-                    // console.log(result.ac_all);
                     var total = result.fa_all - result.fa_man;
                     new Chart(document.getElementById("doughnut_fa"), {
                         type: 'pie',
@@ -213,8 +211,6 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("pie_ac_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    // console.log(result.ac_man);
-                    // console.log(result.ac_all);
                     var total = result.ac_all - result.ac_man;
                     var pie_ac = new Chart(document.getElementById("doughnut_ac"), {
                         type: 'pie',
@@ -251,7 +247,6 @@ $(document).ready(function(){
                         {
                             ctx.fillStyle="white";
                             var textSize = '15px';
-                            //console.log();
                             ctx.font= textSize+"px Verdana";
                             // Get needed variables
                             var value = roundToTwo((pie_ac.segments[i].value/total)*100);
@@ -289,14 +284,11 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("bar_emis").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    // console.log(result.ac_man);
-                    // console.log(result.ac_all);
-                    //var total = result.ac_all - result.ac_man;
                     var pie_ac = new Chart(document.getElementById("pie_emis"), {
                         type: 'pie',
                         onAnimationProgress: drawSegmentValues,
                         data: {
-                          labels: ["Fora da Performance", "Dentro da Performance", "Loja em Estado Neutro"],
+                          labels: ["Abaixo da performance", "Acima da Performance", "Dentro da Performance"],
                           datasets: [
                             {
                               label: "Lojas",
@@ -327,7 +319,6 @@ $(document).ready(function(){
                         {
                             ctx.fillStyle="white";
                             var textSize = '15px';
-                            //console.log();
                             ctx.font= textSize+"px Verdana";
                             // Get needed variables
                             var value = roundToTwo((pie_ac.segments[i].value/total)*100);
@@ -335,11 +326,9 @@ $(document).ready(function(){
                             var startAngle = pie_ac.segments[i].startAngle;
                             var endAngle = pie_ac.segments[i].endAngle;
                             var middleAngle = startAngle + ((endAngle - startAngle)/2);
-
                             // Compute text location
                             var posX = (radius/2) * Math.cos(middleAngle) + midX;
                             var posY = (radius/2) * Math.sin(middleAngle) + midY;
-
                             // Text offside by middle
                             var w_offset = ctx.measureText(value).width/2;
                             var h_offset = textSize/4;

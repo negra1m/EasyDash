@@ -41,5 +41,4 @@ $dados = array(
 
 
 print_r(json_encode($dados));
-/*call status_lojas('2017-11-01', '0')*/
 ?>

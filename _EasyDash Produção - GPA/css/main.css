@@ -23,7 +23,7 @@
   /*margin-bottom: 10px;*/
   background-color: rgba(0, 133, 155, 0.6);
   min-width: 497px;
-  height: 2%;
+  height: 3%;
 }
 .image-top{
 
@@ -229,4 +229,5 @@ input:checked + .slider:before {
     padding-right: 5%;
     align-items: center;
     color: #fff;
+    height: 120px;
 }

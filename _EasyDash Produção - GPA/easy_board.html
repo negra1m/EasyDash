@@ -19,7 +19,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<title>Easy Boards - Dashboards EasyVision</title>
+		<title>Dashboards EasyVision</title>
         <link href="images/Icons/favicon.ico" rel="shortcut icon">
 	</head>
 		<script src="js/chart-js.js"></script>
@@ -31,32 +31,17 @@
     	<script src="js/font-awesome.js"></script>
 		<div class="header">
             <img src="images/logo-pie.png" height="100px" class="image-top1"/>
-            <h1 class="easyboard">Easy Boards</h1>
+            <img src="images/gpa-logo.png" height="100px" class="easyboard"/>
+            <!-- <h1 class="easyboard">LOGO</h1> Substituir por imagem do cliente -->
             <div class="group-img">
-                <p>Powered by</p>
                 <img src="images/gy-logo.png" height="30px" class="image-top2"/>
             </div>
-            <!--<p style="font-size: 20px; margin-right: 20px; vertical-align: bottom; text-align: right; " >EasyBoards V1.1</p>-->
         </div>
-	<body id="body">
-    		<!-- <div class="container" style="margin-left: 10%"> -->
-				<!--<p>Mostra painéis</p>
-				<label class="switch">
-  					<input id="btn-painel-show" type="checkbox">
-  					<span class="slider round"></span>
-				</label>
-				<button class="btn btn-primary" id="btn-painel-show" onclick="hideshow()">Painéis Instantâneos</button>-->
-			
+	<body id="body">			
 			<div id="painel" class="container" style="overflow: hidden;width:100%;height: auto;margin:0 0 0 0;">
 				<div class="row charts">
-<!--
-					<div class="col-md-1 botao-menu vertical-center">
-        				<a class="nav-button prev" href="#" style=""><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
-   					</div>
--->
 				    <div class="col-md-4" style="max-width: 700px">
-	    				
-						<h3 class="header_charts">Lojas EasyVision - Status em Manual (por semana)</h3>
+						<h3 class="header_charts">Status em Manual (por semana)</h3>
 				        <div>
 				        	<div style="display: none" id="bar_waiting" class="sk-folding-cube">
 					            <div class="sk-cube1 sk-cube"></div>
@@ -69,10 +54,6 @@
 				    </div>
 
 				    <div class="col-md-3" style="max-width: 300px">
-				    	<!--<label class="switch">
-	  						<input id="btn-painel-show" type="checkbox" checked>
-	  						<span class="slider round"></span>
-						</label>-->
 				        <div id="painel-pie" >
 				        	<h3 class="header_charts">Status (Atual)</h3>
 					        <div class="row">
@@ -119,7 +100,7 @@
 				
 					<div class="col-md-3" style="max-width: 500px">
 			    		<div class="col-md-12 " >
-		  					<h3 class="header_charts performance">Lojas GPA - Economia (Atual)</h3>
+		  					<h3 class="header_charts performance">Economia (Atual)</h3>
 					        <div class="pie-chart">
 					        	<div style="display: none" id="bar_emis" class="sk-folding-cube">
 						            <div class="sk-cube1 sk-cube"></div>
@@ -131,12 +112,6 @@
 			        		</div>
 			    		</div>
 					</div>
-				
-<!--
-					<div class="col-md-1 botao-menu vertical-center">
-	    				<a style=""><i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-	       			</div>
--->
 					</div><!--fim row-->
 		    </div>
 	</body>
