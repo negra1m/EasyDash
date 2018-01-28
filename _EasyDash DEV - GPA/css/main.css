@@ -232,3 +232,12 @@ input:checked + .slider:before {
     color: #fff;
     height: 120px;
 }
+.first{
+  display: flex;
+  justify-content: space-around;
+}
+.body_chart{
+  height:500px;
+  overflow:scroll;
+  overflow-x:hidden;
+}
