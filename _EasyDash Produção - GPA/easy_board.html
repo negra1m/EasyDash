@@ -66,6 +66,7 @@
 								            <div class="sk-cube3 sk-cube"></div>
 		    						    </div>
 		        						<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
+		        						<a href="#" id="btn-download-ilu" >Download</a>
 					                </div>
 					            </div>
 					        </div>
@@ -79,6 +80,7 @@
 								            <div class="sk-cube3 sk-cube"></div>
 		        						</div>
 		        						<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
+		        						<a href="#" id="btn-download-frio" >Download</a>
 					                </div>
 					            </div>
 					        </div>
@@ -92,6 +94,7 @@
 								            <div class="sk-cube3 sk-cube"></div>
 		        						</div>
 		        						<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
+		        						<a href="#" id="btn-download-ac">Download</a>
 					                </div>
 					            </div>
 					        </div>
@@ -100,7 +103,7 @@
 				
 					<div class="col-md-3" style="max-width: 500px">
 			    		<div class="col-md-12 " >
-		  					<h3 class="header_charts performance">Economia (Atual)</h3>
+		  					<h3 id="economia" class="header_charts performance"></h3>
 					        <div class="pie-chart">
 					        	<div style="display: none" id="bar_emis" class="sk-folding-cube">
 						            <div class="sk-cube1 sk-cube"></div>
@@ -116,3 +119,48 @@
 		    </div>
 	</body>
 </html>
+<script type="text/javascript">
+	var data_plan = Date("YYYY/MM/DD");
+	$('#btn-download-ilu').click(function(){
+   var condicao = 1;
+   $.ajax({
+                url: "http://10.155.131.16:8090/download.php?condicao="+condicao, //mudar
+                type: "GET",
+                success: function (result){
+                  var a = document.createElement('a');
+                  a.href = "iluminacao.csv";
+                  a.setAttribute('download', "Iluminacao em "+data_plan+".csv");
+                  document.body.appendChild(a);
+                  a.click();
+                  }
+      })});
+
+
+$('#btn-download-frio').click(function(){
+   var condicao = 2;
+  $.ajax({
+                url: "http://10.155.131.16:8090/download.php?condicao="+condicao, //mudar
+                type: "GET",
+                success: function (result){
+                  var a = document.createElement('a');
+                  a.href = "frio-alimentar.csv";
+                  a.setAttribute('download', "Frio Alimentar em "+data_plan+".csv");
+                  document.body.appendChild(a);
+                  a.click();
+                  }
+      })});
+
+$('#btn-download-ac').click(function(){
+   var condicao = 3;
+   $.ajax({
+                url: "http://10.155.131.16:8090/download.php?condicao="+condicao, //mudar
+                type: "GET",
+                success: function (result){
+                  var a = document.createElement('a');
+                  a.href = "ar-condicionado.csv";
+                  a.setAttribute('download', "Ar Condicionado em "+data_plan+".csv");
+                  document.body.appendChild(a);
+                  a.click();
+                  }
+      })});
+</script>

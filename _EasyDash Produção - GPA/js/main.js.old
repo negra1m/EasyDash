@@ -54,31 +54,9 @@ $(document).ready(function aa(){
                   // console.log(filipinho);
                   // console.log(today);
                   var atual_semana = new Date().getWeekNumber();
-                  switch (atual_semana) {
-                      case 1:
-                        var semana_1 = 52;
-                        var semana_2 = semana_1-1;
-                        var semana_3 = semana_2-1;
-                          break;
-                      case 2:
-                          var semana_1 = 1;
-                          var semana_2 = 52;
-                          var semana_3 = semana_2 - 1;
-                          break;
-                      case 3:
-                          var semana_1 = 2;
-                          var semana_2 = 1;
-                          var semana_3 = 52;
-                          break;
-                      default:
-                        var semana_1 = atual_semana-1;
-                        var semana_2 = atual_semana-2;
-                        var semana_3 = atual_semana-3;
-                  } 
-                  
-                  // var semana_1 = atual_semana-1;
-                  // var semana_2 = atual_semana-2;
-                  // var semana_3 = atual_semana-3;
+                  var semana_1 = atual_semana-1;
+                  var semana_2 = atual_semana-2;
+                  var semana_3 = atual_semana-3;
 
                   //var label = "Visualização Instantânea de: "+today;
                     //Sucesso no AJAX

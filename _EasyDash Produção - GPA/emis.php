@@ -25,8 +25,8 @@ $semana_atual = date('W'); //2017-11-01
 $dt_ini = date('Y-m-d');
 
 $qry1="SELECT * FROM emis.dados_emis where Economia < (Target - (Target * 0.10))"; /*vermelha*/
-$qry2="SELECT * FROM emis.dados_emis where Economia > (Target + (Target * 0.25))"; /*verde*/
-$qry3="SELECT * FROM emis.dados_emis where Economia >= (Target - (Target * 0.10)) and Economia <= (Target + (Target * 0.25))"; /*preta*/
+$qry2="SELECT * FROM emis.dados_emis where Economia > (Target)"; /*verde*/
+$qry3="SELECT * FROM emis.dados_emis where Economia >= (Target - (Target * 0.10)) and Economia <= (Target)"; /*preta*/
 $cond=2; //representa que o retorno será um array com índices nominais.
 
 $vermelha = dbUpdate($qry1, $cond);

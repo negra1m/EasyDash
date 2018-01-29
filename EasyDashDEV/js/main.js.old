@@ -1,5 +1,4 @@
 /* ****************************************************************** 
-//
 //  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
 //
 //  Description: A tool to show Easy Vision data into Charts powered by
@@ -288,7 +287,7 @@ $(document).ready(function(){
                         type: 'pie',
                         onAnimationProgress: drawSegmentValues,
                         data: {
-                          labels: ["Abaixo da performance", "Acima da Performance", "Dentro da Performance"],
+                          labels: ["Abaixo da Performance", "Acima da Performance", "Dentro da Performance"],
                           datasets: [
                             {
                               label: "Lojas",
@@ -340,6 +339,9 @@ $(document).ready(function(){
                     function roundToTwo(num) {    
                                 return +(Math.round(num + "e+0")  + "e-0");
                             }
+                    var atual_semana = new Date().getWeekNumber();
+                    document.getElementById("economia").innerHTML = "Performance Semana: "+ atual_semana; //Escreve o número da semana no gráfico de pizza
                 }
             })
 });
+
