@@ -18,18 +18,24 @@
 //  and to build the graph of alarms number in a period.
 //
 /* ****************************************************************** */
-header('Access-Control-Allow-Origin: *');
 session_start();
 include ("db.php");
+header('Access-Control-Allow-Origin: *');
 $dt_ini = date('Y-m-d'); //2017-11-01
 $alarms=0;
 
-$alarms1 = "select message, activeTs from easy.events WHERE activeTs is not null and rtnTs is null and alarmLevel = 3";
+$alarms1 = "select SUBSTR(message, 21, 4) AS loja, SUBSTR(message, 26, 43) AS mensagem,  date_format(from_unixtime(activeTs/1000), '%d/%m/%Y %H:%i')  as inicio from easy.events WHERE activeTs is not null and rtnTs is null and alarmLevel = 3 order by inicio asc;";
 
 $alarms_count = dbUpdate($alarms1, 3);
-//$nonsequential = array(1=>"foo", 2=>"bar", 3=>"baz", 4=>"blong");
-var_dump(
- $alarms_count,
- json_encode($alarms_count)
-);
+// $object = new stdClass();
+// foreach ($alarms_count as $key => $value)
+// {
+//     $object->$key = $value;
+// }
+// //$nonsequential = array(1=>"foo", 2=>"bar", 3=>"baz", 4=>"blong");
+// 	$test = json_encode($object, JSON_PRETTY_PRINT);
+//  	//print_r($test);
+//  	//print_r($alarms_count);
+// // );
+ 	print_r(json_encode($alarms_count, JSON_UNESCAPED_UNICODE));
 ?>

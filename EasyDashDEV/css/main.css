@@ -231,14 +231,14 @@ input:checked + .slider:before {
     padding-right: 5%;
     align-items: center;
     color: #fff;
-    height: 120px;
+    height: 100px;
 }
 .first{
   display: flex;
   justify-content: space-around;
 }
 .body_chart{
-  height:500px;
+  height:500px!important;
   overflow:scroll;
   overflow-x:hidden;
 }
@@ -250,4 +250,40 @@ input:checked + .slider:before {
 }
 .container{
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+}
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th {
+    height: 40px;
+    font-size: 15px;
+
+    /*text-align: left;*/
+}
+
+tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+tbody td, thead th {
+    float: left;
+}
+.loja_table{
+  width: 50px;
+  margin-right: 50px;
+}
+.mensagem_table{
+  width: 450px;
+  margin-right: 50px;
+}
+.inicio_table{
+  width: 150px;
+  float: right;
 }

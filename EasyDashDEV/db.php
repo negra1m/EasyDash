@@ -59,7 +59,7 @@ function dbUpdate($sql, $cond) {
     $conn->close();
     }
     else if($cond == 3){ //condição 2 conta o número de linhas retornados pela query, usado para mostrar o atual nos charts de tipo PIE/BAR.
-    
+    $conn->set_charset("utf8");
     $run = mysqli_query($conn, $sql);
     if (!$run) {
         printf("Error: %s\n", mysqli_error($conn));
