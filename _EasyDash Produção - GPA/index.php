@@ -26,24 +26,24 @@ $dt_ini = date('Y-m-d');
 
 switch ($semana_atual) {
     case 1:
-        $semana1_query = 52;
-        $semana2_query = $semana1_query - 1;
-        $semana3_query = $semana2_query - 1;
-        break;
+    $semana1_query = 52;
+    $semana2_query = $semana1_query - 1;
+    $semana3_query = $semana2_query - 1;
+    break;
     case 2:
-        $semana1_query = 1;
-        $semana2_query = 52;
-        $semana3_query = $semana2_query - 1;
-        break;
+    $semana1_query = 1;
+    $semana2_query = 52;
+    $semana3_query = $semana2_query - 1;
+    break;
     case 3:
-        $semana1_query = 2;
-        $semana2_query = 1;
-        $semana3_query = 52;
-        break;
+    $semana1_query = 2;
+    $semana2_query = 1;
+    $semana3_query = 52;
+    break;
     default:
-        $semana1_query = $semana_atual - 1;
-        $semana2_query = $semana_atual - 2;
-        $semana3_query = $semana_atual - 3;
+    $semana1_query = $semana_atual - 1;
+    $semana2_query = $semana_atual - 2;
+    $semana3_query = $semana_atual - 3;
 }
 
 

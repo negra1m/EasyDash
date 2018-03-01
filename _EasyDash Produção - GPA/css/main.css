@@ -5,7 +5,7 @@
 //  Description: A tool to show Easy Vision data into Charts powered by
 //  Chart-JS.
 //
-//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Author: Vinícius Negrão
 //  Company: GreenYellow do Brasil.
 //  Git: www.github.com/vinegrao95/EasyDash
 //
@@ -17,6 +17,7 @@
 ./* ****************************************************************** */
 .header_charts{
   text-align: center;
+  margin: 0 0 0 0;
 }
 html{
   height: 100%;
@@ -45,7 +46,7 @@ html{
   margin: 0;
 }
 /*LOADING ICON*/
-  .sk-folding-cube {
+.sk-folding-cube {
   /*margin: 20px auto;*/
   width: 40px;
   height: 40px;
@@ -53,7 +54,7 @@ html{
   left: 50%;
   top: 50%;
   -webkit-transform: rotateZ(45deg);
-          transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
 }
 
 .sk-folding-cube .sk-cube {
@@ -62,8 +63,8 @@ html{
   height: 50%;
   position: relative;
   -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-          transform: scale(1.1); 
+  -ms-transform: scale(1.1);
+  transform: scale(1.1); 
 }
 .sk-folding-cube .sk-cube:before {
   content: '';
@@ -74,171 +75,272 @@ html{
   height: 100%;
   background-color: #333;
   -webkit-animation: sk-foldCubeAngle 2.4s infinite linear both;
-          animation: sk-foldCubeAngle 2.4s infinite linear both;
+  animation: sk-foldCubeAngle 2.4s infinite linear both;
   -webkit-transform-origin: 100% 100%;
-      -ms-transform-origin: 100% 100%;
-          transform-origin: 100% 100%;
+  -ms-transform-origin: 100% 100%;
+  transform-origin: 100% 100%;
 }
 .sk-folding-cube .sk-cube2 {
   -webkit-transform: scale(1.1) rotateZ(90deg);
-          transform: scale(1.1) rotateZ(90deg);
+  transform: scale(1.1) rotateZ(90deg);
 }
 .sk-folding-cube .sk-cube3 {
   -webkit-transform: scale(1.1) rotateZ(180deg);
-          transform: scale(1.1) rotateZ(180deg);
+  transform: scale(1.1) rotateZ(180deg);
 }
 .sk-folding-cube .sk-cube4 {
   -webkit-transform: scale(1.1) rotateZ(270deg);
-          transform: scale(1.1) rotateZ(270deg);
+  transform: scale(1.1) rotateZ(270deg);
 }
 .sk-folding-cube .sk-cube2:before {
   -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
+  animation-delay: 0.3s;
 }
 .sk-folding-cube .sk-cube3:before {
   -webkit-animation-delay: 0.6s;
-          animation-delay: 0.6s; 
+  animation-delay: 0.6s; 
 }
 .sk-folding-cube .sk-cube4:before {
   -webkit-animation-delay: 0.9s;
-          animation-delay: 0.9s;
+  animation-delay: 0.9s;
 }
 @-webkit-keyframes sk-foldCubeAngle {
   0%, 10% {
     -webkit-transform: perspective(140px) rotateX(-180deg);
-            transform: perspective(140px) rotateX(-180deg);
+    transform: perspective(140px) rotateX(-180deg);
     opacity: 0; 
-  } 25%, 75% {
-    -webkit-transform: perspective(140px) rotateX(0deg);
-            transform: perspective(140px) rotateX(0deg);
-    opacity: 1; 
-  } 90%, 100% {
-    -webkit-transform: perspective(140px) rotateY(180deg);
+    } 25%, 75% {
+        -webkit-transform: perspective(140px) rotateX(0deg);
+        transform: perspective(140px) rotateX(0deg);
+        opacity: 1; 
+        } 90%, 100% {
+            -webkit-transform: perspective(140px) rotateY(180deg);
             transform: perspective(140px) rotateY(180deg);
-    opacity: 0; 
-  } 
-}
+            opacity: 0; 
+        } 
+    }
 
-@keyframes sk-foldCubeAngle {
-  0%, 10% {
-    -webkit-transform: perspective(140px) rotateX(-180deg);
-            transform: perspective(140px) rotateX(-180deg);
-    opacity: 0; 
-  } 25%, 75% {
-    -webkit-transform: perspective(140px) rotateX(0deg);
+    @keyframes sk-foldCubeAngle {
+      0%, 10% {
+        -webkit-transform: perspective(140px) rotateX(-180deg);
+        transform: perspective(140px) rotateX(-180deg);
+        opacity: 0; 
+        } 25%, 75% {
+            -webkit-transform: perspective(140px) rotateX(0deg);
             transform: perspective(140px) rotateX(0deg);
-    opacity: 1; 
-  } 90%, 100% {
-    -webkit-transform: perspective(140px) rotateY(180deg);
-            transform: perspective(140px) rotateY(180deg);
-    opacity: 0; 
+            opacity: 1; 
+            } 90%, 100% {
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0; 
+            }
+        }
+
+        /*END OF LOADDING ICON*/
+
+        /* The switch - the box around the slider */
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 60px;
+          height: 34px;
+          margin: 15px 0 0 0;
+      }
+
+      /* Hide default HTML checkbox */
+      .switch input {display:none;}
+
+      /* The slider */
+      .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #ccc;
+          -webkit-transition: .4s;
+          transition: .4s;
+      }
+
+      .slider:before {
+          position: absolute;
+          content: "";
+          height: 26px;
+          width: 26px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+      }
+
+      input:checked + .slider {
+          background-color: #2196F3;
+      }
+
+      input:focus + .slider {
+          box-shadow: 0 0 1px #2196F3;
+      }
+
+      input:checked + .slider:before {
+          -webkit-transform: translateX(26px);
+          -ms-transform: translateX(26px);
+          transform: translateX(26px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+          border-radius: 34px;
+      }
+
+      .slider.round:before {
+          border-radius: 50%;
+      }
+
+      /*BOTAO MUDA PAINEL*/
+      .botao-menu{
+          color: rgba();
+          align-self: right;
+          justify-content: center;
+          align-items: center;
+          font-size: 30px;
+      }
+      .vertical-center {
+          min-height: 70%;   
+          min-height: 70vh;  
+          display: flex;
+      }
+      .charts{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /*background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);*/
+
+
+    }
+    .performance{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+      .header{
+       background-image: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);
+        display: flex;
+        justify-content: space-between;
+        padding-left: 5%;
+        padding-right: 5%;
+        align-items: center;
+        color: #fff;
+        height: 60px;
+    }
+    .first{
+      display: flex;
+      justify-content: space-around;
   }
+  .body_chart{
+      height:500px!important;
+      overflow:scroll;
+      overflow-x:hidden;
+  }
+  #nmr_lojas{
+      color: #000;
+      font-size: 20px;
+      vertical-align: middle;
+
+  }
+  .container{
+      background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+  }
+  thead, tbody, tr, td, th { display: block; }
+
+  tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
 }
 
-/*END OF LOADDING ICON*/
+thead th {
+    height: 40px;
+    font-size: 15px;
 
-/* The switch - the box around the slider */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 60px;
-  height: 34px;
-  margin: 15px 0 0 0;
+    /*text-align: left;*/
 }
 
-/* Hide default HTML checkbox */
-.switch input {display:none;}
-
-/* The slider */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+tbody {
+    height: 400px;
+    overflow-y: auto;
 }
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+tbody td, thead th {
+    float: left;
 }
 
-input:checked + .slider {
-  background-color: #2196F3;
+/* Tables
+================================== */
+.Rtable {
+  display: flex!important;
+  flex-wrap: wrap;
+  margin: 25px 0 0 0;
+  padding: 0;
 }
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
-}
-
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
-}
-
-.slider.round:before {
-  border-radius: 50%;
-}
-
-/*BOTAO MUDA PAINEL*/
-.botao-menu{
-  color: rgba();
-  align-self: right;
-  justify-content: center;
+.Rtable-cell {
+  box-sizing: border-box;
+  flex-grow: 1;
+  width: 100%;  // Default to full width
+  padding: 0.8em 1.2em;
+  overflow: hidden!important; // Or flex might break
+  list-style: none;
+  text-align: middle;
   align-items: center;
-  font-size: 30px;
+  border: solid 0px white;
+  text-align: center;
+  background: fade(slategrey,20%);
+  > h1, > h2, > h3, > h4, > h5, > h6 { margin: 0; }
 }
-.vertical-center {
-  min-height: 70%;   
-  min-height: 70vh;  
-  display: flex;
+.Rtable-cell > h3{
+    margin: 10px;
 }
-.charts{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /*background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);*/
-  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+/* Table column sizing
+================================== */
+.Rtable--2cols > .Rtable-cell  { width: 50%; }
+.Rtable--3cols > .Rtable-cell  { width: 33.33%; }
+.Rtable--4cols > .Rtable-cell  { width: 25%; }
+.Rtable--5cols > .Rtable-cell  { width: 20%; }
+.Rtable--6cols > .Rtable-cell  { width: 16.6%; }
 
+.menu_lista{
+  overflow-y: auto;
+  height: 300px;
+  border-bottom: 3px solid;
 }
-.performance{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+
+.table_head{
+    border-bottom: 5px solid;
+    vertical-align: bottom; 
 }
-.header{
-    background-image: linear-gradient(to top, #0ba360 0%, #3cba92 100%);
-    display: flex;
-    justify-content: space-between;
-    padding-left: 5%;
-    padding-right: 5%;
-    align-items: center;
-    color: #fff;
-    height: 120px;
+
+/* Page styling
+================================== */
+/*@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+html { 
+  height: 100%;
+  background-color: #EEE; 
 }
-.first{
-  display: flex;
-  justify-content: space-around;
+body {
+  box-sizing: border-box;
+  min-height: 100%;
+  margin: 0 auto;
+  padding: 2em;
+  max-width: 800px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  background-color: white;
+  border: double 3px #DDD;
+  border-top: none; border-bottom: none;
 }
-.body_chart{
-  height:500px;
-  overflow:scroll;
-  overflow-x:hidden;
-}
+h1, h2, h3, h4, h5, h6 { margin-top: 0; }
+h3 { font-size: 1.2em; }
+h4 { font-size: 1em; }
+strong { color: darken(slategrey,20%); }*/

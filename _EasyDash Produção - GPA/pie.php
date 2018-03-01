@@ -39,12 +39,12 @@ $fa_all_qry = "CALL status_fa('$dt_ini', '$rf', $all)";
 $ac_man_qry = "CALL status_lojas('$dt_ini', '$ac', '$manu')";
 $ac_all_qry = "CALL status_lojas('$dt_ini', '$ac', '$all')";
 
-$il_man = dbUpdate($il_man_qry, 2);
-$il_all = dbUpdate($il_all_qry, 2);
-$fa_man = dbUpdate($fa_man_qry, 2);
-$fa_all = dbUpdate($fa_all_qry, 2);
-$ac_man = dbUpdate($ac_man_qry, 2);
-$ac_all = dbUpdate($ac_all_qry, 2);
+$il_man = dbUpdate($il_man_qry, 2, "EASY_HISTORIC");
+$il_all = dbUpdate($il_all_qry, 2, "EASY_HISTORIC");
+$fa_man = dbUpdate($fa_man_qry, 2, "EASY_HISTORIC");
+$fa_all = dbUpdate($fa_all_qry, 2, "EASY_HISTORIC");
+$ac_man = dbUpdate($ac_man_qry, 2, "EASY_HISTORIC");
+$ac_all = dbUpdate($ac_all_qry, 2, "EASY_HISTORIC");
 
 $dados = array(
     "il_man" => $il_man,

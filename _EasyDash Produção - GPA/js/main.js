@@ -305,6 +305,9 @@ $(document).ready(function(){
                     //Sucesso no AJAX
                     document.getElementById("bar_emis").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
+                    var total_lojas = result.loja_vermelha + result.loja_verde + result.loja_neutra;
+                    console.log(total_lojas);
+                    document.getElementById("nmr_lojas").innerHTML="  "+ total_lojas+ ' Lojas';
                     var pie_ac = new Chart(document.getElementById("pie_emis"), {
                         type: 'pie',
                         onAnimationProgress: drawSegmentValues,

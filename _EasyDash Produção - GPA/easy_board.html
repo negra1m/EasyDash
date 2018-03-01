@@ -6,7 +6,7 @@
 //  Description: A tool to show Easy Vision data into Charts powered by
 //  Chart-JS.
 //
-//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Author: Vinícius Negrão
 //  Company: GreenYellow do Brasil.
 //  Git: www.github.com/vinegrao95/EasyDash
 //
@@ -17,150 +17,159 @@
 //
 /* ****************************************************************** */-->	
 <html>
-	<head>
-		<meta charset="UTF-8"/>
-		<title>Dashboards EasyVision</title>
-        <link href="images/Icons/favicon.ico" rel="shortcut icon">
-	</head>
-		<script src="js/chart-js.js"></script>
-		<script src="js/jquery.js"></script>
-		<script src="js/chart-js-util.js"></script>
-		<script src="js/main.js"></script>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-    	<link rel="stylesheet" href="css/main.css">
-    	<script src="js/font-awesome.js"></script>
-		<div class="header">
-            <img src="images/logo-pie.png" height="100px" class="image-top1"/>
-            <img src="images/gpa-logo.png" height="100px" class="easyboard"/>
-            <!-- Substituir por imagem do cliente -->
-            <div class="group-img">
-                <img src="images/gy-logo.png" height="60px" class="image-top2"/>
-            </div>
-        </div>
-	<body id="body">			
-			<div id="painel" class="container" style="overflow: hidden;width:100%;height: auto;margin:0 0 0 0;">
-				<div class="row charts">
-				    <div class="col-md-4" style="max-width: 700px">
-						<h3 class="header_charts">Status em Manual (por semana)</h3>
-				        <div>
-				        	<div style="display: none" id="bar_waiting" class="sk-folding-cube">
-					            <div class="sk-cube1 sk-cube"></div>
-					            <div class="sk-cube2 sk-cube"></div>
-					            <div class="sk-cube4 sk-cube"></div>
-					            <div class="sk-cube3 sk-cube"></div>
-				        	</div>
-	        				<canvas class="bar-chart" id="bar" height= "400px" style="max-width: 650px";></canvas>
-				        </div>
-				    </div>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Dashboards EasyVision</title>
+	<link href="images/Icons/favicon.ico" rel="shortcut icon">
+</head>
+<script src="js/chart-js.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/chart-js-util.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="js/font-awesome.js"></script>
+<div class="header">
+	<img src="images/logo-pie.png" height="30px" class="image-top1"/>
+	<img src="images/gpa-logo.png" height="30px" class="easyboard"/>
+	<!-- Substituir por imagem do cliente -->
+	<div class="group-img">
+		<img src="images/gy-logo.png" height="20px" class="image-top2"/>
+	</div>
+</div>
+<body id="body">			
+	<div id="painel" class="container " style="overflow: hidden;width:100%;height: auto;margin:0 0 0 0;">
+		
+		<div class="row">
+			<div class="col-md-12" style="display: flex; justify-content: space-between;margin-bottom: -50px">
+				<div><img  width="50px" height="50px" src="images/store.png"><p style="display: inline;" id="nmr_lojas"></p></div> <!--MOSTRA O NÚMERO TOTAL DE LOJAS INTEGRADAS -->
+				<a style="margin-top:10px;" class="btn btn-warning" href="new.html">Alarmes</a>
+			</div>
+		</div>
 
-				    <div class="col-md-3" style="max-width: 300px">
-				        <div id="painel-pie" >
-				        	<h3 class="header_charts">Status (Atual)</h3>
-					        <div class="row">
-					            <div class="col-md-12">
-					                <div class="pie-chart">
-		                	        	<div style="display: none" id="pie_ilu_waiting" class="sk-folding-cube">
-								            <div class="sk-cube1 sk-cube"></div>
-								            <div class="sk-cube2 sk-cube"></div>
-								            <div class="sk-cube4 sk-cube"></div>
-								            <div class="sk-cube3 sk-cube"></div>
-		    						    </div>
-		        						<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
-		        						<a href="#" id="btn-download-ilu" >Download</a>
-					                </div>
-					            </div>
-					        </div>
-					        <div class="row">
-					            <div class="col-md-12">
-					                <div class="pie-chart">
-					                	<div style="display: none" id="pie_fa_waiting" class="sk-folding-cube">
-								            <div class="sk-cube1 sk-cube"></div>
-								            <div class="sk-cube2 sk-cube"></div>
-								            <div class="sk-cube4 sk-cube"></div>
-								            <div class="sk-cube3 sk-cube"></div>
-		        						</div>
-		        						<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
-		        						<a href="#" id="btn-download-frio" >Download</a>
-					                </div>
-					            </div>
-					        </div>
-					        <div class="row">
-					            <div class="col-md-12">
-					                <div class="pie-chart">
-					                	<div style="display: none" id="pie_ac_waiting" class="sk-folding-cube">
-								            <div class="sk-cube1 sk-cube"></div>
-								            <div class="sk-cube2 sk-cube"></div>
-								            <div class="sk-cube4 sk-cube"></div>
-								            <div class="sk-cube3 sk-cube"></div>
-		        						</div>
-		        						<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
-		        						<a href="#" id="btn-download-ac">Download</a>
-					                </div>
-					            </div>
-					        </div>
-					    </div>
-				    </div><!--FIM COL MD-3-->
-				
-					<div class="col-md-3" style="max-width: 500px">
-			    		<div class="col-md-12 " >
-		  					<h3 id="economia" class="header_charts performance"></h3>
-					        <div class="pie-chart">
-					        	<div style="display: none" id="bar_emis" class="sk-folding-cube">
-						            <div class="sk-cube1 sk-cube"></div>
-						            <div class="sk-cube2 sk-cube"></div>
-						            <div class="sk-cube4 sk-cube"></div>
-						            <div class="sk-cube3 sk-cube"></div>
-					        	</div>
-		        				<canvas id="pie_emis" height= "300px" width="300px" ;></canvas>
-			        		</div>
-			    		</div>
+
+		<div class="row charts">
+			<div class="col-md-4" style="max-width: 700px">
+				<h3 class="header_charts">Status em Manual (por semana)</h3>
+				<div>
+					<div style="display: none" id="bar_waiting" class="sk-folding-cube">
+						<div class="sk-cube1 sk-cube"></div>
+						<div class="sk-cube2 sk-cube"></div>
+						<div class="sk-cube4 sk-cube"></div>
+						<div class="sk-cube3 sk-cube"></div>
 					</div>
-					</div><!--fim row-->
-		    </div>
-	</body>
+					<canvas class="bar-chart" id="bar" height= "450px" style="max-width: 650px";></canvas>
+				</div>
+			</div>
+
+			<div class="col-md-3" style="max-width: 300px">
+				<div id="painel-pie" >
+					<h3 class="header_charts">Status (Atual)</h3>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pie-chart">
+								<div style="display: none" id="pie_ilu_waiting" class="sk-folding-cube">
+									<div class="sk-cube1 sk-cube"></div>
+									<div class="sk-cube2 sk-cube"></div>
+									<div class="sk-cube4 sk-cube"></div>
+									<div class="sk-cube3 sk-cube"></div>
+								</div>
+								<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
+								<a href="#" id="btn-download-ilu" >Download</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pie-chart">
+								<div style="display: none" id="pie_fa_waiting" class="sk-folding-cube">
+									<div class="sk-cube1 sk-cube"></div>
+									<div class="sk-cube2 sk-cube"></div>
+									<div class="sk-cube4 sk-cube"></div>
+									<div class="sk-cube3 sk-cube"></div>
+								</div>
+								<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
+								<a href="#" id="btn-download-frio" >Download</a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pie-chart">
+								<div style="display: none" id="pie_ac_waiting" class="sk-folding-cube">
+									<div class="sk-cube1 sk-cube"></div>
+									<div class="sk-cube2 sk-cube"></div>
+									<div class="sk-cube4 sk-cube"></div>
+									<div class="sk-cube3 sk-cube"></div>
+								</div>
+								<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
+								<a href="#" id="btn-download-ac">Download</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--FIM COL MD-3-->
+
+			<div class="col-md-3" style="max-width: 500px">
+				<div class="col-md-12 " >
+					<h3 id="economia" class="header_charts performance"></h3>
+					<div class="pie-chart">
+						<div style="display: none" id="bar_emis" class="sk-folding-cube">
+							<div class="sk-cube1 sk-cube"></div>
+							<div class="sk-cube2 sk-cube"></div>
+							<div class="sk-cube4 sk-cube"></div>
+							<div class="sk-cube3 sk-cube"></div>
+						</div>
+						<canvas id="pie_emis" height= "300px" width="300px" ;></canvas>
+					</div>
+				</div>
+			</div>
+		</div><!--fim row-->
+	</div>
+</body>
 </html>
 <script type="text/javascript">
 	var data_plan = Date("YYYY/MM/DD");
 	$('#btn-download-ilu').click(function(){
-   var condicao = 1;
-   $.ajax({
+		var condicao = 1;
+		$.ajax({
                 url: "http://10.155.131.16:8090/download.php?condicao="+condicao, //mudar
                 type: "GET",
                 success: function (result){
-                  var a = document.createElement('a');
-                  a.href = "iluminacao.csv";
-                  a.setAttribute('download', "Iluminacao em "+data_plan+".csv");
-                  document.body.appendChild(a);
-                  a.click();
-                  }
-      })});
+                	var a = document.createElement('a');
+                	a.href = "iluminacao.csv";
+                	a.setAttribute('download', "Iluminacao em "+data_plan+".csv");
+                	document.body.appendChild(a);
+                	a.click();
+                }
+            })});
 
 
-$('#btn-download-frio').click(function(){
-   var condicao = 2;
-  $.ajax({
+	$('#btn-download-frio').click(function(){
+		var condicao = 2;
+		$.ajax({
                 url: "http://10.155.131.16:8090/download.php?condicao="+condicao, //mudar
                 type: "GET",
                 success: function (result){
-                  var a = document.createElement('a');
-                  a.href = "frio-alimentar.csv";
-                  a.setAttribute('download', "Frio Alimentar em "+data_plan+".csv");
-                  document.body.appendChild(a);
-                  a.click();
-                  }
-      })});
+                	var a = document.createElement('a');
+                	a.href = "frio-alimentar.csv";
+                	a.setAttribute('download', "Frio Alimentar em "+data_plan+".csv");
+                	document.body.appendChild(a);
+                	a.click();
+                }
+            })});
 
-$('#btn-download-ac').click(function(){
-   var condicao = 3;
-   $.ajax({
+	$('#btn-download-ac').click(function(){
+		var condicao = 3;
+		$.ajax({
                 url: "http://10.155.131.16:8090/download.php?condicao="+condicao, //mudar
                 type: "GET",
                 success: function (result){
-                  var a = document.createElement('a');
-                  a.href = "ar-condicionado.csv";
-                  a.setAttribute('download', "Ar Condicionado em "+data_plan+".csv");
-                  document.body.appendChild(a);
-                  a.click();
-                  }
-      })});
-</script>
+                	var a = document.createElement('a');
+                	a.href = "ar-condicionado.csv";
+                	a.setAttribute('download', "Ar Condicionado em "+data_plan+".csv");
+                	document.body.appendChild(a);
+                	a.click();
+                }
+            })});
+        </script>

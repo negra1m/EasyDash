@@ -7,7 +7,7 @@
 //  Description: A tool to show Easy Vision data into Charts powered by
 //  Chart-JS.
 //
-//  Author: Vinícius Negrão e Filipe Aparecido 
+//  Author: Vinícius Negrão
 //  Company: GreenYellow do Brasil.
 //  Git: www.github.com/vinegrao95/EasyDash
 //
@@ -46,7 +46,7 @@ function dbUpdate($sql, $cond) {
     $conn->close();
 
 }
-    else if($cond == 2){ //condição 2 conta o número de linhas retornados pela query, usado para mostrar o atual nos charts de tipo PIE.
+    else if($cond == 2){ //condição 2 conta o número de linhas retornados pela query, usado para mostrar o atual nos charts de tipo PIE/BAR.
          $run = mysqli_query($conn, $sql);
         if (!$run) {
         printf("Error: %s\n", mysqli_error($conn));
@@ -58,6 +58,21 @@ function dbUpdate($sql, $cond) {
     //close connection 
     $conn->close();
     }
-}
+    else if($cond == 3){ //condição 2 conta o número de linhas retornados pela query, usado para mostrar o atual nos charts de tipo PIE/BAR.
+    $conn->set_charset("utf8");
+    $run = mysqli_query($conn, $sql);
+    if (!$run) {
+        printf("Error: %s\n", mysqli_error($conn));
+        exit();
+    }
+    $rows = array();
+    while($r = mysqli_fetch_assoc($run)) {
+        $rows[] = $r;
+    }
+    return $rows;
 
+    //close connection 
+    $conn->close();
+}
+}
 ?>
