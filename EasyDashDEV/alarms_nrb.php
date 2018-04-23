@@ -24,8 +24,8 @@ header('Access-Control-Allow-Origin: *');
 $dt_ini = date('Y-m-d'); //2017-11-01
 $alarms=0;
 
-	$ilu = "select ID, ALARMS_QTY_OPEN_ILU, ALARMS_HOUR from EASY_HISTORIC.ALARMS_GRAPHICS order by ID desc limit 60;";	
-	$com = "select ID, ALARMS_QTY_OPEN_COM, ALARMS_HOUR from EASY_HISTORIC.ALARMS_GRAPHICS order by ID desc limit 60;";	
+	$ilu = "select ID, ALARMS_QTY_OPEN_ILU, ALARMS_DATE from EASY_HISTORIC.ALARMS_GRAPHICS order by ALARMS_DATE desc LIMIT 200;";
+	$com = "select ID, ALARMS_QTY_OPEN_COM, ALARMS_DATE from EASY_HISTORIC.ALARMS_GRAPHICS order by ALARMS_DATE desc LIMIT 200;";
 	$ilu_return = dbUpdate($ilu, 3);
 	$com_return = dbUpdate($com, 3);
 

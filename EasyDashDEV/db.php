@@ -1,26 +1,7 @@
 <?php
-
-/* ****************************************************************** */
-//
-//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
-//
-//  Description: A tool to show Easy Vision data into Charts powered by
-//  Chart-JS.
-//
-//  Author: Vinícius Negrão
-//  Company: GreenYellow do Brasil.
-//  Git: www.github.com/vinegrao95/EasyDash
-//
-/* ****************************************************************** */
-
-/* ****************************************************************** */
-//
-//  data base connection and query execution
-//
-/* ****************************************************************** */
 function dbUpdate($sql, $cond) {
     // seting the database parameters...
-    $servername = "10.155.131.16";
+    $servername = "10.155.130.229";
     $username = "easy";
     $password = "easy";
     $dbname = "EASY_HISTORIC";
@@ -58,7 +39,7 @@ function dbUpdate($sql, $cond) {
     //close connection 
     $conn->close();
     }
-    else if($cond == 3){ //condição 2 conta o número de linhas retornados pela query, usado para mostrar o atual nos charts de tipo PIE/BAR.
+    else if($cond == 3){ //condição .
     $conn->set_charset("utf8");
     $run = mysqli_query($conn, $sql);
     if (!$run) {

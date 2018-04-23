@@ -1,6 +1,4 @@
-/* ****************************************************************** 
-//
-//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+/*  *************************** Easy Dash ***************************
 //
 //  Description: A tool to show Easy Vision data into Charts powered by
 //  Chart-JS.
@@ -9,26 +7,47 @@
 //  Company: GreenYellow do Brasil.
 //  Git: www.github.com/vinegrao95/EasyDash
 //
-/* ****************************************************************** */
 /* ****************************************************************** 
-//
 //  StyleSheet
-//
 ./* ****************************************************************** */
+.alarms_graph{
+    height: 550px!important;
+}
+.store-number{
+  text-align: center;
+  margin-bottom: 20%;
+}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 15px;
+    padding: 5px 0 0 0!important;
+    margin-bottom: 15px;
+    margin-top: 5px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+.store-number.card{
+  padding: 25px 0 25px 0!important;
+  margin: -100px  0 150px 0;
+  max-width: 415px;
+}
+.bar-graph.card{
+  padding: 35px 25px 0px 25px!important;
+  margin-top: 15px;
+}
+
+/* On mouse-over, add shadow to the box */
+.card:hover {
+    box-shadow: 0 25px 16px 0 rgba(0,0,0,0.2);
+}
 .header_charts{
   text-align: center;
-  margin: 0 0 0 0;
-}
-html{
-  height: 100%;
-}
-.image-top{
-
+  margin: 0 0 10px 0;
 }
 #doughnut{
 	text-align: center;
 }
-
 .pie-chart{
 	height: 100%;
     padding: 0;
@@ -213,26 +232,35 @@ html{
       }
       .charts{
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
+        max-height:900px;
         /*background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);*/
-
-
     }
     .performance{
-        display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: row!important;
     }
       .header{
-       background-image: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);
+        /*background-image: linear-gradient(to right, #00f2fe 0%, #4facfe 100%);*/
+        background-image: linear-gradient(to right, rgb(180, 180, 180) 0%, rgb(150, 150, 150) 100%);
         display: flex;
         justify-content: space-between;
         padding-left: 5%;
         padding-right: 5%;
+        margin-bottom: 15px;
         align-items: center;
         color: #fff;
-        height: 80px;
+        height: 50px;
+        
+    }
+    .header:hover{
+      height: 50px;
+    }
+    .image-top{
+      height: 40px;
+      transition: 1s
     }
     .first{
       display: flex;
@@ -250,7 +278,13 @@ html{
 
   }
   .container{
-      background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
+      overflow: hidden;
+      width:95%;
+      align-self: center;
+
+  }
+  .alarme-botao{
+    margin-left: 20px;
   }
   thead, tbody, tr, td, th { display: block; }
 
@@ -320,7 +354,30 @@ tbody td, thead th {
     border-bottom: 5px solid;
     vertical-align: bottom; 
 }
+.alarm-botao{
+  margin-top:10px;
+  text-align: right;
+}
+.waiting-bar{
+  display: none;
+}
+p, h1, h2, h3 {
+  color: rgb(100, 100, 100);
+  font-family: 'Nunito', sans-serif;
+}
+a {
+  color: rgb(9, 113, 249);
+  font-family: 'Nunito', sans-serif;
+}
 
+body{
+  /*background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);*/
+  /*background-color: #30cfd0;*/
+  background-image: linear-gradient(to top, #330867 0%, #30cfd0 100%);
+}
+html{
+    background-color: #330867;
+}
 /* Page styling
 ================================== */
 /*@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:400,700);

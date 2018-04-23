@@ -7,141 +7,131 @@
 //  Author: Vinícius Negrão e Filipe Aparecido 
 //  Company: GreenYellow do Brasil.
 //  Git: www.github.com/vinegrao95/EasyDash
-//
 /* ****************************************************************** */
-/* ****************************************************************** 
-//
 //  JS commands and AJAX comunication with PHP server.
-//
 /* ****************************************************************** */
 
+//Show all the charts into the page.
 $(document).ready(function(){
   $('#btn-painel-show').change(function() {
     $("#painel-pie").toggle("slow");
   });
 });
 
-var corAuto = 'rgba(34, 229, 112, 0.8)';
-var corManu = 'rgba(200, 0, 10, 0.6)';
-var corNeutra = 'rgba(146, 163, 168, 0.6)';
+var corAuto = 'rgba(34, 229, 112, 0.8)'; //green
+var corManu = 'rgba(255, 0, 0, 0.5)'; //red
+var corNeutra = 'rgba(146, 163, 168, 0.6)'; //grey
 
+var corFrio = "rgba(255, 125, 0, 0.8)"; //orange
+var corIlu = "rgba(0, 200, 200, 0.8)"; //blue
+var corAC = "rgba(100, 29, 147, 0.8)"; //purple
+
+//Recover the week number to build the bar-chart. 
 Date.prototype.getWeekNumber = function(){
-                      var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
-                      var dayNum = d.getUTCDay() || 7;
-                      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-                      var yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-                      return Math.ceil((((d - yearStart) / 86400000) + 1)/7)
-                    };
-                  	var today = new Date();
-					var dd = today.getDate();
-					var mm = today.getMonth()+1; //January is 0!
-					var yyyy = today.getFullYear();
-					if(dd<10){
-					    dd='0'+dd;
-					} 
-					if(mm<10){
-					    mm='0'+mm;
-					} 
-					var today = dd+'/'+mm+'/'+yyyy;
-/*BAR CHART PARA LOJAS COM STATUS EM MANUAL*/
+    var d = new Date(
+        Date.UTC(
+            this.getFullYear(), this.getMonth(), this.getDate()
+        )
+    );
+    var dayNum = d.getUTCDay() || 7;
+    d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+    var yearStart = new Date(
+        Date.UTC(d.getUTCFullYear(),0,1)
+    );
+    return Math.ceil((((d - yearStart) / 86400000) + 1)/7)
+};
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+if(dd<10){
+    dd='0'+dd;
+}
+if(mm<10){
+    mm='0'+mm;
+} 
+var today = dd+'/'+mm+'/'+yyyy; //Format date in dd/mm/yyyy format.
+
+/*BAR CHART FOR STORES IN MANUAL STATUS per EQUIPMENT*/
 $(document).ready(function aa(){
-    document.getElementById("bar_waiting").setAttribute('style', 'display: block');
+    document.getElementById("bar_waiting").setAttribute('style', 'display: block'); //set the waiting animation when the request is running.
     $.ajax({
-
-                url: "http://10.155.131.16:8090",
-                type: "GET",
-                success: function (filipinho){
-                  // console.log(filipinho);
-                  // console.log(today);
-                  var atual_semana = new Date().getWeekNumber();
-                  switch (atual_semana) {
-                      case 1:
-                        var semana_1 = 52;
-                        var semana_2 = semana_1-1;
-                        var semana_3 = semana_2-1;
-                          break;
-                      case 2:
-                          var semana_1 = 1;
-                          var semana_2 = 52;
-                          var semana_3 = semana_2 - 1;
-                          break;
-                      case 3:
-                          var semana_1 = 2;
-                          var semana_2 = 1;
-                          var semana_3 = 52;
-                          break;
-                      default:
-                        var semana_1 = atual_semana-1;
-                        var semana_2 = atual_semana-2;
-                        var semana_3 = atual_semana-3;
-                  } 
-                  
-                  // var semana_1 = atual_semana-1;
-                  // var semana_2 = atual_semana-2;
-                  // var semana_3 = atual_semana-3;
-
-                  //var label = "Visualização Instantânea de: "+today;
-                    //Sucesso no AJAX
-                    document.getElementById("bar_waiting").setAttribute('style', 'display: none');
-                    var result = JSON.parse(filipinho);
-                    // console.log(result);
-                    var barChartData = {
-                    //label vem do BD
-
-                    labels: [ "Semana: "+semana_3, "Semana: "+semana_2, "Semana: "+semana_1, "Semana Atual "],
-                    //["Semana 42", "Semana 43", "Semana 44", "Semana 45", "Semana 46", "Semana 47", "Semana 48"],
-                    datasets: [{
-                        label: 'Iluminação',
-                        //backgroundColor: #fff,
-                        //borderColor: red,
-                        borderWidth: 1,
-                        data: [result.il_man_3, result.il_man_2, result.il_man_1, result.il_man_atual],
-                        backgroundColor: 'rgba(0, 200, 200, 0.8)'
-                    }, {
-                        label: 'Ar condicionado',
-                        //backgroundColor: #fff,
-                        //borderColor: blue,
-                        borderWidth: 1,
-                        data: [result.ac_man_3, result.ac_man_2, result.ac_man_1, result.ac_man_atual],
-                        backgroundColor: 'rgba(0, 200, 0, 0.8)'
-                    }, {
-                        label: 'Frio Alimentar',
-                        //backgroundColor: #fff,
-                        //borderColor: blue,
-                        borderWidth: 1,
-                        data: [result.fa_man_3, result.fa_man_2, result.fa_man_1, result.fa_man_atual],
-                        backgroundColor: 'rgba(255, 125, 0, 0.8)'
-                    }]
-                    //color: ['green', 'red']
-                }
-                    var ctx = document.getElementById("bar").getContext("2d");
-                    window.myBar = new Chart(ctx, {
-                        type: 'bar',
-                        data: barChartData,
-                        backgroundColor: ['green', 'red'],
-                        borderColor: ['green', 'red'],
-                        options: {
-                            responsive: true,
-                            legend: {
-                                position: 'bottom',
-                            },
-                            title: {
-                                display: false,
-                                text: 'Lojas com Status em Manual '+today
-                            },
-                            scales: {
-                              yAxes: [{
-                                  display: true,
-                                  ticks: {
-                                      suggestedMin: 0
-                                  }
-                              }]
-                            }                            
-                        }//end function
-                    });
-                }
-    });
-});
+url: "http://10.155.130.229:8090", //IP EasyVision
+type: "GET",
+success: function (filipinho){
+    //Sucesso no AJAX
+    var atual_semana = new Date().getWeekNumber();
+    switch (atual_semana) { //This switch is used to correct the week number if it's on the 3 first weeks of the year.
+    case 1:
+        var semana_1 = 52;
+        var semana_2 = semana_1-1;
+        var semana_3 = semana_2-1;
+    break;
+    case 2:
+        var semana_1 = 1;
+        var semana_2 = 52;
+        var semana_3 = semana_2 - 1;
+    break;
+    case 3:
+        var semana_1 = 2;
+        var semana_2 = 1;
+        var semana_3 = 52;
+    break;
+    default:
+        var semana_1 = atual_semana-1;
+        var semana_2 = atual_semana-2;
+        var semana_3 = atual_semana-3;
+    } 
+    document.getElementById("bar_waiting").setAttribute('style', 'display: none'); //set the waiting bar invisible.
+    
+    var result = JSON.parse(filipinho); //parse it to JSON structure.
+    
+    var barChartData = {
+        labels: [ "Semana: "+semana_3, "Semana: "+semana_2, "Semana: "+semana_1, "Semana Atual "], //labels for the bar chart. (bottom)
+        datasets: [{
+            label: 'Iluminação', //label for the bar
+            borderWidth: 1,
+            data: [result.il_man_3, result.il_man_2, result.il_man_1, result.il_man_atual],
+            backgroundColor: corIlu //referred in this document first lines.
+        }, {
+            label: 'Ar condicionado',
+            borderWidth: 1,
+            data: [result.ac_man_3, result.ac_man_2, result.ac_man_1, result.ac_man_atual],
+            backgroundColor: corAC
+        }, {
+            label: 'Frio Alimentar',
+            borderWidth: 1,
+            data: [result.fa_man_3, result.fa_man_2, result.fa_man_1, result.fa_man_atual],
+            backgroundColor: corFrio
+        }]
+    }
+    
+    var ctx = document.getElementById("bar").getContext("2d"); //Retrive the context into canvas tag for the bar chart.
+    window.myBar = new Chart(ctx, {
+        type: 'bar', //cfg for the chart type
+        data: barChartData,
+        options: {
+            responsive: true,
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: true,
+                text: 'Lojas com Status em Manual '+ today
+            },
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        suggestedMin: 0
+                    }
+                }]
+            }                            
+        }//end options properties
+    });// end new chart Object
+} // end ajax success
+}); //end ajax request
+}); //end onReady page load function
 
 /* PIE CHART PARA STATUS DE ILUMINAÇÃO */
 $(document).ready(function(){
@@ -149,38 +139,43 @@ $(document).ready(function(){
     $.ajax({
 
 
-                url: "http://10.155.131.16:8090/pie.php",
+                url: "http://127.0.0.1:8080/pie.php",
                 type: "GET",
                 success: function (filipinho){
                     //Sucesso no AJAX
-                    document.getElementById("pie_ilu_waiting").setAttribute('style', 'display: none');
-                    var result = JSON.parse(filipinho);
-                    var total = result.il_all - result.il_man;
-                    new Chart(document.getElementById("doughnut_il"), {
+                    document.querySelector("#pie_ilu_waiting").setAttribute('style', 'display: none');
+                    var result = JSON.parse(filipinho); //retrieve all data by a query in database file 'pie.php'                    
+                    console.log(result); 
+                    var total = result.il_man + result.ac_auto;
+                    var manu = ((result.il_man*100)/total).toFixed(2);
+                    var auto = ((result.il_auto*100)/total).toFixed(2);
+                    var teste_pie_integration = {
                         type: 'pie',
                         data: {
-                          labels: ["Manual", "Automático"],
+                          labels: ["Manual %", "Automático %"],
                           datasets: [
                             {
                               label: "Lojas",
                               backgroundColor: [corManu, corAuto],
-                              data: [result.il_man, total]
+                              data: [manu, auto]
                             }
                           ]
                         },
                         options: {
-                          legend: {
+                            percentageInnerCutout: 80,
+                            legend: {
                                 position: 'bottom'
-                          },
-                          title: {
+                            },
+                            title: {
                             display: true,
                             text: 'Iluminação em: '+today
                           },
                           responsive: true
                         }
-                    });
-                }
-            })
+                    }
+                    new Chart(document.querySelector("#doughnut_il"), teste_pie_integration); //end new chart declaration
+                }//end AJAX success
+            })//end AJAX request
 });
 
 /*PIE CHART DE FRIO ALIMENTAR*/
@@ -188,22 +183,24 @@ $(document).ready(function(){
     document.getElementById("pie_fa_waiting").setAttribute('style', 'display: block');
     $.ajax({
 
-                url: "http://10.155.131.16:8090/pie.php",
+                url: "http://127.0.0.1:8080/pie.php",
                 type: "GET",
                 success: function (filipinho){
                     //Sucesso no AJAX
                     document.getElementById("pie_fa_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    var total = result.fa_all - result.fa_man;
+                    var total = result.fa_man + result.fa_auto;
+                    var manu = ((result.fa_man*100)/total).toFixed(2);
+                    var auto = ((result.fa_auto*100)/total).toFixed(2);
                     new Chart(document.getElementById("doughnut_fa"), {
                         type: 'pie',
                         data: {
-                          labels: ["Manual", "Automático"],
+                          labels: ["% Manual", "% Automático"],
                           datasets: [
                             {
                               label: "Lojas",
                               backgroundColor: [corManu, corAuto],
-                              data: [result.fa_man, total]
+                              data: [manu, auto]
                             }
                           ]
                         },
@@ -226,23 +223,26 @@ $(document).ready(function(){
     document.getElementById("pie_ac_waiting").setAttribute('style', 'display: block');
     $.ajax({
 
-                url: "http://10.155.131.16:8090/pie.php",
+                //url: "http://10.155.130.229:8090/pie.php", //
+                url: "http://127.0.0.1:8080/pie.php",
                 type: "GET",
                 success: function (filipinho){
                     //Sucesso no AJAX
                     document.getElementById("pie_ac_waiting").setAttribute('style', 'display: none');
                     var result = JSON.parse(filipinho);
-                    var total = result.ac_all - result.ac_man;
+                    var total = result.ac_man + result.ac_auto;
+                    var manu = ((result.ac_man*100)/total).toFixed(2);
+                    var auto = ((result.ac_auto*100)/total).toFixed(2);
                     var pie_ac = new Chart(document.getElementById("doughnut_ac"), {
                         type: 'pie',
-                        onAnimationProgress: drawSegmentValues,
+                        //onAnimationProgress: drawSegmentValues,
                         data: {
-                          labels: ["Manual", "Automático"],
+                          labels: ["Manual %", "Automático %"],
                           datasets: [
                             {
                               label: "Lojas",
                               backgroundColor: [corManu, corAuto],
-                              data: [result.ac_man, total]
+                              data: [manu, auto]
                             }
                           ]
                         },
@@ -256,41 +256,7 @@ $(document).ready(function(){
                           },
                           responsive: true
                         }
-                    });
-                    function drawSegmentValues()
-                    {
-                    var total = 0;
-                        for(var i=0; i<pie_ac.segments.length; i++) {
-                            total+= pie_ac.segments[i].value;
-                            console.log(total);
-                        }
-                        for(var i=0; i<pie_ac.segments.length; i++) 
-                        {
-                            ctx.fillStyle="white";
-                            var textSize = '15px';
-                            ctx.font= textSize+"px Verdana";
-                            // Get needed variables
-                            var value = roundToTwo((pie_ac.segments[i].value/total)*100);
-                            value = value + "%";
-                            var startAngle = pie_ac.segments[i].startAngle;
-                            var endAngle = pie_ac.segments[i].endAngle;
-                            var middleAngle = startAngle + ((endAngle - startAngle)/2);
-
-                            // Compute text location
-                            var posX = (radius/2) * Math.cos(middleAngle) + midX;
-                            var posY = (radius/2) * Math.sin(middleAngle) + midY;
-
-                            // Text offside by middle
-                            var w_offset = ctx.measureText(value).width/2;
-                            var h_offset = textSize/4;
-
-                            ctx.fillText(value, posX - w_offset, posY + h_offset);
-                        }
-                    }
-                    var radius = pie_ac.outerRadius;
-                    function roundToTwo(num) {    
-                                return +(Math.round(num + "e+0")  + "e-0");
-                            }
+                    });                   
                 }
             })
 });
@@ -299,7 +265,7 @@ $(document).ready(function(){
     document.getElementById("pie_emis").setAttribute('style', 'display: block');
     $.ajax({
 
-                url: "http://10.155.131.16:8090/emis.php", //mudar
+                url: "http://10.155.130.229:8090/emis.php", //mudar
                 type: "GET",
                 success: function (filipinho){
                     //Sucesso no AJAX
@@ -307,10 +273,9 @@ $(document).ready(function(){
                     var result = JSON.parse(filipinho);
                     var total_lojas = result.loja_vermelha + result.loja_verde + result.loja_neutra;
                     console.log(total_lojas);
-                    document.getElementById("nmr_lojas").innerHTML="  "+ total_lojas+ ' Lojas';
+                    document.getElementById("nmr_lojas").innerHTML="  "+ total_lojas+ ' Lojas Integradas';
                     var pie_ac = new Chart(document.getElementById("pie_emis"), {
                         type: 'pie',
-                        onAnimationProgress: drawSegmentValues,
                         data: {
                           labels: ["Abaixo da Performance", "Acima da Performance", "Dentro da Performance"],
                           datasets: [
@@ -332,41 +297,52 @@ $(document).ready(function(){
                           responsive: true
                         }
                     });
-                    function drawSegmentValues()
-                    {
-                    var total = 0;
-                        for(var i=0; i<pie_ac.segments.length; i++) {
-                            total+= pie_ac.segments[i].value;
-                            console.log(total);
-                        }
-                        for(var i=0; i<pie_ac.segments.length; i++) 
-                        {
-                            ctx.fillStyle="white";
-                            var textSize = '15px';
-                            ctx.font= textSize+"px Verdana";
-                            // Get needed variables
-                            var value = roundToTwo((pie_ac.segments[i].value/total)*100);
-                            value = value + "%";
-                            var startAngle = pie_ac.segments[i].startAngle;
-                            var endAngle = pie_ac.segments[i].endAngle;
-                            var middleAngle = startAngle + ((endAngle - startAngle)/2);
-                            // Compute text location
-                            var posX = (radius/2) * Math.cos(middleAngle) + midX;
-                            var posY = (radius/2) * Math.sin(middleAngle) + midY;
-                            // Text offside by middle
-                            var w_offset = ctx.measureText(value).width/2;
-                            var h_offset = textSize/4;
-
-                            ctx.fillText(value, posX - w_offset, posY + h_offset);
-                        }
-                    }
-                    var radius = pie_ac.outerRadius;
-                    function roundToTwo(num) {    
-                                return +(Math.round(num + "e+0")  + "e-0");
-                            }
                     var atual_semana = new Date().getWeekNumber();
-                    document.getElementById("economia").innerHTML = "Performance Semana: "+ atual_semana; //Escreve o número da semana no gráfico de pizza
+                    document.querySelector("#economia").innerHTML = "Performance Semana: "+ atual_semana; //Escreve o número da semana no gráfico de pizza
                 }
             })
 });
+  var data_plan = Date("YYYY/MM/DD");
+  $('#btn-download-ilu').click(function(){
+    var condicao = 1;
+    $.ajax({
+                url: "http://10.155.130.229:8090/download.php?condicao="+condicao, //mudar
+                type: "GET",
+                success: function (result){
+                  var a = document.createElement('a');
+                  a.href = "iluminacao.csv";
+                  a.setAttribute('download', "Iluminacao em "+data_plan+".csv");
+                  document.body.appendChild(a);
+                  a.click();
+                }
+            })});
 
+
+  $('#btn-download-frio').click(function(){
+    var condicao = 2;
+    $.ajax({
+                url: "http://10.155.130.229:8090/download.php?condicao="+condicao, //mudar
+                type: "GET",
+                success: function (result){
+                  var a = document.createElement('a');
+                  a.href = "frio-alimentar.csv";
+                  a.setAttribute('download', "Frio Alimentar em "+data_plan+".csv");
+                  document.body.appendChild(a);
+                  a.click();
+                }
+            })});
+
+  $('#btn-download-ac').click(function(){
+    var condicao = 3;
+    $.ajax({
+                url: "http://10.155.130.229:8090/download.php?condicao="+condicao, //mudar
+                type: "GET",
+                success: function (result){
+                  var a = document.createElement('a');
+                  a.href = "ar-condicionado.csv";
+                  a.setAttribute('download', "Ar Condicionado em "+data_plan+".csv");
+                  document.body.appendChild(a);
+                  a.click();
+                }
+            })
+  });

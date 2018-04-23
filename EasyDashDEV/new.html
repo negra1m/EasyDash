@@ -1,86 +1,74 @@
 <!DOCTYPE html>
-<!--* ****************************************************************** */
-//
-//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
-//
+<!--//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
 //  Description: A tool to show Easy Vision data into Charts powered by
 //  Chart-JS.
-//
 //  Author: Vinícius Negrão
 //  Company: GreenYellow do Brasil.
 //  Git: www.github.com/vinegrao95/EasyDash
-//
 /* ****************************************************************** */
 /* ****************************************************************** */
-//
-//  Front-End Dashboards View for EasyVision
-//
-/* ****************************************************************** */-->	
+//  Front-End Dashboards View
+/* ****************************************************************** */--> 
 <html>
 <head>
-  <meta charset="UTF-8"/>
-  <title>Alarms EasyVision</title>
-  <link href="images/Icons/favicon.ico" rel="shortcut icon">
+    <meta charset="UTF-8"/>
+    <!-- <meta http-equiv="refresh" content="5;"/> -->
+    <title>Alarms EasyVision</title>
+    <link href="images/Icons/favicon.ico" rel="shortcut icon">
 </head>
+<div class="header">
+    <img src="images/gpa-logo.png" class="image-top"/>
+    <img src="images/gy-logo.png"  class="image-top"/>
+    <img src="images/logo-pie.png" class="image-top"/>
+</div>
+<body id="body">			
+    <div id="painel" class="container">
+        <div class="row card">
+            <div class="col-md-12">
+                <a class="alarme-botao btn btn-warning" href="index.html">Voltar</a>
+                <h3 class="header_charts">Lojas com alarmes ativos (horário)</h3>
+                <div class="alarms_graph">
+                    <div id="bar_waiting" class="sk-folding-cube waiting-bar">
+                        <div class="sk-cube1 sk-cube"></div>
+                        <div class="sk-cube2 sk-cube"></div>
+                        <div class="sk-cube4 sk-cube"></div>
+                        <div class="sk-cube3 sk-cube"></div>
+                    </div>
+                    <canvas class="alarm_graph" id="alarms_graph"></canvas>
+                </div>
+            </div>
+        </div>   
+        <div class="row">
+            <div class="col-md-12 card">
+                <h3 class="header_charts">Lista de alarmes ativos</h3>
+                <div>
+                    <div id="bar_waiting" class="sk-folding-cube waiting-bar">
+                        <div class="sk-cube1 sk-cube"></div>
+                        <div class="sk-cube2 sk-cube"></div>
+                        <div class="sk-cube4 sk-cube"></div>
+                        <div class="sk-cube3 sk-cube"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="Rtable Rtable--3cols">
+                        <div class="Rtable-cell table_head"><h3><strong>Loja</strong></h3></div>
+                        <div class="Rtable-cell table_head"><h3><strong>Mensagem</h3></strong></div>
+                        <div class="Rtable-cell table_head"><h3><strong>Data Início</strong></h3></div>
+                    </div>
+                    <div class="menu_lista Rtable Rtable--3cols" id="alarm_nok"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
 <script src="js/chart-js.js"></script>
 <script src="js/jquery.js"></script>
 <script src="js/chart-js-util.js"></script>
+<script src="js/fontawesome-all.js"></script>
 <script src="js/alarms.js"></script>
-<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/main.css">
-<script src="js/font-awesome.js"></script>
-<div class="header">
-    <img src="images/logo-pie.png" height="60px" class="image-top1"/>
-  <img src="images/gpa-logo.png" height="60px" class="easyboard"/>
-  <!-- Substituir por imagem do cliente -->
-  <div class="group-img">
-    <img src="images/gy-logo.png" height="30px" class="image-top2"/>
-</div>
-</div>
-<style>
-.teste{
-  border: 1px solid;
-}
-</style>
-<body id="body">			
-  <div id="painel" class="container" style="width: 100%">
-    <div class="row" style="margin-bottom: 100px;">
-      <div class="col-md-12 ">
-        <a style="margin-top:10px;" class="btn btn-warning" href="easy_board.html">Voltar</a>
-        <h3 class="header_charts">Lista de alarmes ativos</h3>
-        <div>
-            <div style="display: none" id="bar_waiting" class="sk-folding-cube">
-                <div class="sk-cube1 sk-cube"></div>
-                <div class="sk-cube2 sk-cube"></div>
-                <div class="sk-cube4 sk-cube"></div>
-                <div class="sk-cube3 sk-cube"></div>
-            </div>
-        </div>
-        <div class="" id="";>
-            <div class="Rtable Rtable--3cols">
-                <div class="Rtable-cell table_head"><h3><strong>Loja</strong></h3></div>
-                <div class="Rtable-cell table_head"><h3><strong>Mensagem</h3></strong></div>
-                <div class="Rtable-cell table_head"><h3><strong>Data Início</strong></h3></div>
-            </div>
-            <div class="menu_lista Rtable Rtable--3cols" id="alarm_nok">
-            </div>
-        </div>
-    </div>
-</div>   
-<div class="row">
-  <div class="col-md-12">
-    <h3 class="header_charts">Lojas com alarmes ativos (horário)</h3>
-
-    <div>
-      <div style="display: none" id="bar_waiting" class="sk-folding-cube">
-        <div class="sk-cube1 sk-cube"></div>
-        <div class="sk-cube2 sk-cube"></div>
-        <div class="sk-cube4 sk-cube"></div>
-        <div class="sk-cube3 sk-cube"></div>
-    </div>
-    <canvas style="width: 90%; height: 380px;" class="alarm_graph" id="alarms_graph"></canvas>
-</div>
-</div>
-</div>
-</body>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 </html>

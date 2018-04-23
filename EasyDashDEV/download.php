@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin: *');
 // seting the database parameters...
-$servername = "10.155.131.16";
+$servername = "10.155.130.229";
 $username = "easy";
 $password = "easy";
 $dbname = "EASY_HISTORIC";

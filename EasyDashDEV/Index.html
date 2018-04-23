@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!--//  ***** ***** ***** ********* Easy Dash ********* ***** ***** *****
+//  Description: A tool to show Easy Vision data into Charts powered by
+//  Chart-JS.
+//  Author: Vinícius Negrão
+//  Company: GreenYellow do Brasil.
+//  Git: www.github.com/vinegrao95/EasyDash
+/* ****************************************************************** */
+/* ****************************************************************** */
+//  Front-End Dashboards View
+/* ****************************************************************** */-->	
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="refresh" content="90;"/>
+	<title>Dashboards EasyVision</title>
+	<link href="images/Icons/favicon.ico" rel="shortcut icon">
+</head>
+<div class="header">
+	<img src="images/gpa-logo.png" height="30px" class="image-top"/>
+	<img src="images/gy-logo.png" height="30px" class="image-top"/>
+	<img src="images/logo-pie.png" height="40px" class="image-top"/>
+	<!-- Substituir por imagem do cliente -->
+</div>
+<body id="body">			
+	<div id="painel" class="container card">
+		<div class="row">
+			<div class="col-md-12">
+				<a class="alarme-botao btn btn-warning" href="new.html">Alarmes</a>
+			</div>
+		</div>
+
+		<div class="row charts">
+			<div class="col-md-4" style="max-width: 700px">
+				<h3 class="header_charts">Status em Manual (por semana)</h3>
+				<div class="card bar-graph">
+					<div id="bar_waiting" class="waiting-bar sk-folding-cube">
+						<div class="sk-cube1 sk-cube"></div>
+						<div class="sk-cube2 sk-cube"></div>
+						<div class="sk-cube4 sk-cube"></div>
+						<div class="sk-cube3 sk-cube"></div>
+					</div>
+					<canvas class="bar-chart" id="bar" height= "450px" style="max-width: 650px";></canvas>
+				</div>
+			</div>
+
+			<div class="col-md-3" style="max-width: 300px">
+				<div id="painel-pie" >
+					<h3 class="header_charts">Status (Atual)</h3>
+					<div class="row">
+						<div class="col-md-12 card">
+							<div class="pie-chart">
+								<div id="pie_ilu_waiting" class="waiting-bar sk-folding-cube">
+									<div class="sk-cube1 sk-cube"></div>
+									<div class="sk-cube2 sk-cube"></div>
+									<div class="sk-cube4 sk-cube"></div>
+									<div class="sk-cube3 sk-cube"></div>
+								</div>
+								<canvas id="doughnut_il" height= "250px" width="300px" ></canvas>
+								<a href="#" id="btn-download-ilu">Download <i class="fas fa-download"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 card">
+							<div class="pie-chart">
+								<div id="pie_fa_waiting" class="waiting-bar sk-folding-cube">
+									<div class="sk-cube1 sk-cube"></div>
+									<div class="sk-cube2 sk-cube"></div>
+									<div class="sk-cube4 sk-cube"></div>
+									<div class="sk-cube3 sk-cube"></div>
+								</div>
+								<canvas id="doughnut_fa" height= "250px" width="300px" ></canvas>
+								<a href="#" id="btn-download-frio">Download <i class="fas fa-download"></i></a>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 card">
+							<div class="pie-chart">
+								<div id="pie_ac_waiting" class="waiting-bar sk-folding-cube">
+									<div class="sk-cube1 sk-cube"></div>
+									<div class="sk-cube2 sk-cube"></div>
+									<div class="sk-cube4 sk-cube"></div>
+									<div class="sk-cube3 sk-cube"></div>
+								</div>
+								<canvas id="doughnut_ac" height= "250px" width="300px" ></canvas>
+								<a href="#" id="btn-download-ac">Download <i class="fas fa-download"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--FIM COL MD-3-->
+			<div class="col-md-3" style="max-width: 500px">
+				<div class="store-number card"> <!--MOSTRA O NÚMERO TOTAL DE LOJAS INTEGRADAS -->
+					<img width="70px" height="70px" src="images/store.png">
+					<p style="display: inline;" id="nmr_lojas"></p>
+				</div>
+				
+				<div class="col-md-12" >
+					<h3 id="economia" class="header_charts"></h3>
+					<div class="pie-chart card performance">
+						<div style="display: none" id="bar_emis" class="sk-folding-cube">
+							<div class="sk-cube1 sk-cube"></div>
+							<div class="sk-cube2 sk-cube"></div>
+							<div class="sk-cube4 sk-cube"></div>
+							<div class="sk-cube3 sk-cube"></div>
+						</div>
+						<canvas id="pie_emis" height= "300px" width="300px" ;></canvas>
+						<br><br><br><br>
+					</div>
+				</div>
+			</div>
+		</div><!--fim row-->
+		<div class="row">
+			<p style="text-align: center;">&copy; GreenYellow do Brasil - 2018</p>
+		</div>
+	</div>
+</body>
+<script src="js/chart-js.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/chart-js-util.js"></script>
+<script src="js/main.js"></script>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="js/fontawesome-all.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+</html>
